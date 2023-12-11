@@ -1211,7 +1211,6 @@ They provide a balance between scalability, security, and privacy by minimizing 
 |                 | Requests Status Attestation |                   |
 |                 |----------------------------&gt;|                   |
 | Wallet Instance |                             | Credential Issuer |
-|                 |                             |    (JWT or CWT)   |
 |                 | Status Attestation          |                   |
 |                 |&lt;----------------------------|                   |
 +-----------------+                             +-------------------+
@@ -1350,10 +1349,11 @@ related to a specific Credential, to the Issuer.<a href="#section-6-2" class="pi
 |  Wallet Instance  |                         | Credential Issuer  |
 |                   |                         |                    |
 +-------------------+                         +--------------------+
-
 </pre><a href="#section-6-3" class="pilcrow">¶</a>
 </div>
-<p id="section-6-4"><strong>Step 1 (Status Attestation Request)</strong>: The Wallet Instance sends the Status Attestation Request to the Issuer. The request <span class="bcp14">MUST</span> contain the Wallet Instance Attestation with its Proof of Possession and a Credential Proof of Possession JWT, signed  with the private key related to the public key contained within the Credential.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-4">The Wallet Instance sends the Status Attestation Request to the Issuer.
+The request <span class="bcp14">MUST</span> contain the Credential which is intended to obtain the Status Attestation
+and a Proof of Possession of it, signed  with the private key related to the public key contained within the Credential.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6-5">
 <pre>
 POST /status HTTP/1.1
@@ -1404,19 +1404,25 @@ credential_pop=$CredentialPoPJWT
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">typ</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>typ</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">It <span class="bcp14">MUST</span> be set to revocation-request+jwt</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span> Section 4.1.1</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">alg</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>alg</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">A digital signature algorithm identifier such as per IANA "JSON Web Signature and Encryption Algorithms" registry. It <span class="bcp14">MUST NOT</span> be set to <code>none</code> or any symmetric algorithm (MAC) identifier.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC7516" class="cite xref">RFC7516</a>]</span> Section 4.1.1</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">kid</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>kid</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">Unique identifier of the jwk, as used for the key binding of the Credential. he JWT <span class="bcp14">MUST</span> be signed with the private key whihc the public key is contained in the Credential.</td>
               <td class="text-left" rowspan="1" colspan="1"> </td>
             </tr>
@@ -1433,46 +1439,60 @@ credential_pop=$CredentialPoPJWT
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">iss</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>iss</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">Wallet identifier.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> and <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">aud</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>aud</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">It <span class="bcp14">MUST</span> be set to the identifier of the Credential Issuer.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> and <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">exp</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>exp</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">UNIX Timestamp with the expiration time of the JWT.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> and <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">iat</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>iat</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">UNIX Timestamp with the time of JWT issuance.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> and <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span>
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">jti</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>jti</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">Unique identifier for the JWT.</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> Section 4.1.7</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">format</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>format</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">The data format of the Credential. Eg: <code>vc+sd-jwt</code> for SD-JWT, <code>vc+mdoc</code> for ISO/IEC 18013-5 MDOC CBOR</td>
               <td class="text-left" rowspan="1" colspan="1"> </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">credential</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <strong>credential</strong>
+</td>
               <td class="text-left" rowspan="1" colspan="1">It <span class="bcp14">MUST</span> contain the Credential according to the data format given in the <code>format</code> claim.</td>
               <td class="text-left" rowspan="1" colspan="1"> </td>
             </tr>

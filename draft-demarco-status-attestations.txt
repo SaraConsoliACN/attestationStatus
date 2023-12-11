@@ -111,7 +111,6 @@ Table of Contents
    |                 | Requests Status Attestation |                   |
    |                 |---------------------------->|                   |
    | Wallet Instance |                             | Credential Issuer |
-   |                 |                             |    (JWT or CWT)   |
    |                 | Status Attestation          |                   |
    |                 |<----------------------------|                   |
    +-----------------+                             +-------------------+
@@ -254,11 +253,11 @@ Table of Contents
    |                   |                         |                    |
    +-------------------+                         +--------------------+
 
-   *Step 1 (Status Attestation Request)*: The Wallet Instance sends the
-   Status Attestation Request to the Issuer.  The request MUST contain
-   the Wallet Instance Attestation with its Proof of Possession and a
-   Credential Proof of Possession JWT, signed with the private key
-   related to the public key contained within the Credential.
+   The Wallet Instance sends the Status Attestation Request to the
+   Issuer.  The request MUST contain the Credential which is intended to
+   obtain the Status Attestation and a Proof of Possession of it, signed
+   with the private key related to the public key contained within the
+   Credential.
 
    POST /status HTTP/1.1
    Host: issuer.example.org
@@ -305,17 +304,17 @@ Table of Contents
      | JOSE   | Description                              | Reference |
      | header |                                          |           |
      +========+==========================================+===========+
-     | typ    | It MUST be set to revocation-request+jwt | [RFC7516] |
+     | *typ*  | It MUST be set to revocation-request+jwt | [RFC7516] |
      |        |                                          | Section   |
      |        |                                          | 4.1.1     |
      +--------+------------------------------------------+-----------+
-     | alg    | A digital signature algorithm identifier | [RFC7516] |
+     | *alg*  | A digital signature algorithm identifier | [RFC7516] |
      |        | such as per IANA "JSON Web Signature and | Section   |
      |        | Encryption Algorithms" registry.  It     | 4.1.1     |
      |        | MUST NOT be set to none or any symmetric |           |
      |        | algorithm (MAC) identifier.              |           |
      +--------+------------------------------------------+-----------+
-     | kid    | Unique identifier of the jwk, as used    |           |
+     | *kid*  | Unique identifier of the jwk, as used    |           |
      |        | for the key binding of the Credential.   |           |
      |        | he JWT MUST be signed with the private   |           |
      |        | key whihc the public key is contained in |           |
@@ -324,32 +323,37 @@ Table of Contents
 
                                   Table 1
 
-    +============+====================================+===============+
-    | Claim      | Description                        | Reference     |
-    +============+====================================+===============+
-    | iss        | Wallet identifier.                 | [RFC9126] and |
-    |            |                                    | [RFC7519]     |
-    +------------+------------------------------------+---------------+
-    | aud        | It MUST be set to the identifier   | [RFC9126] and |
-    |            | of the Credential Issuer.          | [RFC7519]     |
-    +------------+------------------------------------+---------------+
-    | exp        | UNIX Timestamp with the expiration | [RFC9126] and |
-    |            | time of the JWT.                   | [RFC7519]     |
-    +------------+------------------------------------+---------------+
-    | iat        | UNIX Timestamp with the time of    | [RFC9126] and |
-    |            | JWT issuance.                      | [RFC7519]     |
-    +------------+------------------------------------+---------------+
-    | jti        | Unique identifier for the JWT.     | [RFC7519]     |
-    |            |                                    | Section 4.1.7 |
-    +------------+------------------------------------+---------------+
-    | format     | The data format of the Credential. |               |
-    |            | Eg: vc+sd-jwt for SD-JWT, vc+mdoc  |               |
-    |            | for ISO/IEC 18013-5 MDOC CBOR      |               |
-    +------------+------------------------------------+---------------+
-    | credential | It MUST contain the Credential     |               |
-    |            | according to the data format given |               |
-    |            | in the format claim.               |               |
-    +------------+------------------------------------+---------------+
+   +==============+====================================+===============+
+   | Claim        | Description                        | Reference     |
+   +==============+====================================+===============+
+   | *iss*        | Wallet identifier.                 | [RFC9126]     |
+   |              |                                    | and           |
+   |              |                                    | [RFC7519]     |
+   +--------------+------------------------------------+---------------+
+   | *aud*        | It MUST be set to the identifier   | [RFC9126]     |
+   |              | of the Credential Issuer.          | and           |
+   |              |                                    | [RFC7519]     |
+   +--------------+------------------------------------+---------------+
+   | *exp*        | UNIX Timestamp with the expiration | [RFC9126]     |
+   |              | time of the JWT.                   | and           |
+   |              |                                    | [RFC7519]     |
+   +--------------+------------------------------------+---------------+
+   | *iat*        | UNIX Timestamp with the time of    | [RFC9126]     |
+   |              | JWT issuance.                      | and           |
+   |              |                                    | [RFC7519]     |
+   +--------------+------------------------------------+---------------+
+   | *jti*        | Unique identifier for the JWT.     | [RFC7519]     |
+   |              |                                    | Section       |
+   |              |                                    | 4.1.7         |
+   +--------------+------------------------------------+---------------+
+   | *format*     | The data format of the Credential. |               |
+   |              | Eg: vc+sd-jwt for SD-JWT, vc+mdoc  |               |
+   |              | for ISO/IEC 18013-5 MDOC CBOR      |               |
+   +--------------+------------------------------------+---------------+
+   | *credential* | It MUST contain the Credential     |               |
+   |              | according to the data format given |               |
+   |              | in the format claim.               |               |
+   +--------------+------------------------------------+---------------+
 
                                   Table 2
 
