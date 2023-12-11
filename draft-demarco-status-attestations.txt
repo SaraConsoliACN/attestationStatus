@@ -189,8 +189,8 @@ Table of Contents
       which Credential the requestor is using and from which Credential
       Issuer, information that should remain confidential.
 
-   However, Status Attestations differ significantly from Status Lists
-   in several ways:
+   Status Attestations differ significantly from Status Lists in several
+   ways:
 
    1.  *Privacy*: Status Attestations are designed to be privacy-
        preserving.  They do not require the Verifier to gather any
@@ -229,7 +229,7 @@ Table of Contents
 
    *  MUST be presented in conjunction with the Digital Credential.  The
       Status Attestation MUST be timestamped with its issuance datetime,
-      always referring to a previous period.
+      always referring to a previous period to the presentation time.
 
    *  MUST contain the expiration datetime after which the Digital
       Credential MUST NOT be considered valid anymore.  The expiration
@@ -242,8 +242,8 @@ Table of Contents
    properties of attestations are reported in accordance with the JWT
    standard, while for the purposes of this specification, any
    credential or attestation format format may be used, as long as all
-   attributes and requirements of them are satisfied, even using
-   equivalent names or values.
+   attributes and requirements defined in this specification are
+   satisfied, even using equivalent names or values.
 
 6.  Status Attestation Request
 
@@ -253,7 +253,8 @@ Table of Contents
    of the Credential's non-revocation status.
 
    The following diagram shows the Wallet Instance requesting a Status
-   Attestation related to a specific Credential, to the Issuer.
+   Attestation to an Issuer, related to a specific Credential issued by
+   the same Issuer.
 
    +-------------------+                         +--------------------+
    |                   |                         |                    |
@@ -276,10 +277,10 @@ Table of Contents
 
    The Wallet Instance sends the Status Attestation Request to the
    Issuer.  The request MUST contain the Credential, for which the
-   Status Attestation is intended, enveloped in a signed object as proof
-   of possession.  The proof of possession MUST be signed with the
-   private key corresponding to the public key attested by Issuer within
-   the Credential.
+   Status Attestation is requested, and enveloped in a signed object as
+   proof of possession.  The proof of possession MUST be signed with the
+   private key corresponding to the public key attested by the Issuer
+   within the Credential.
 
    POST /status HTTP/1.1
    Host: issuer.example.org
@@ -288,11 +289,16 @@ Table of Contents
    credential_pop=$CredentialPoPJWT
 
    The Issuer verifies the signature of the credential_pop object using
-   the public key contained in the Credential.  Therefore the Wallet
-   Instance is entitled to request its Status Attestation.
+   the public key contained in the Credential.
+
+   It MUST also verify that it is the legitimate Issuer of the
+   Credential.
+
+   Therefore the Wallet Instance is entitled to request its Status
+   Attestation.
 
    The technical details and requirements on the credential_pop object
-   is defined below, in the next section.
+   are defined in the next section.
 
 6.1.  Digital Credential Proof of Possession
 
@@ -300,8 +306,9 @@ Table of Contents
    Attestation, MUST give the proof of possession of the Credential to
    the Credential Issuer.
 
-   Below a non-normative example of a Credential proof of possession is
-   given by the following JWT headers and payload:
+   Below a non-normative example of a Credential proof of possession
+   with the JWT headers and payload represented without applying
+   signature and encoding, for better readability:
 
    {
        "alg": "ES256",
@@ -320,11 +327,8 @@ Table of Contents
        "credential": $Issuer-Signed-JWT
    }
 
-   The Credential Proof of Possession in the previous non-normative
-   example is a signed JWT without applying encoding and signature, for
-   better readability.  When the JWT format is used, the JWT MUST
-   contain the parameters (JOSE Header and claims) as defined in the
-   following table.
+   When the JWT format is used, the JWT MUST contain the parameters
+   defined in the following table.
 
      +========+==========================================+===========+
      | JOSE   | Description                              | Reference |
@@ -440,19 +444,19 @@ Table of Contents
     |                       | Issuer.                 |               |
     +-----------------------+-------------------------+---------------+
     | *iat*                 | UNIX Timestamp with the | [RFC9126],    |
-    |                       | time of there Status    | [RFC7519]     |
+    |                       | time of the Status      | [RFC7519]     |
     |                       | Attestation issuance.   |               |
     +-----------------------+-------------------------+---------------+
     | *exp*                 | UNIX Timestamp with the | [RFC9126],    |
     |                       | expiry time of the      | [RFC7519]     |
     |                       | Status Attestation.     |               |
     +-----------------------+-------------------------+---------------+
-    | *credential_hash*     | Hash value of the       | This          |
+    | *credential_hash*     | Hash value of the       | this          |
     |                       | Credential the Status   | specification |
     |                       | Attestation is bound    |               |
     |                       | to.                     |               |
     +-----------------------+-------------------------+---------------+
-    | *credential_hash_alg* | The Algorithm used of   | This          |
+    | *credential_hash_alg* | The Algorithm used of   | this          |
     |                       | hashing the Credential  | specification |
     |                       | to which the Status     |               |
     |                       | Attestation is bound.   |               |
@@ -461,7 +465,7 @@ Table of Contents
     +-----------------------+-------------------------+---------------+
     | *cnf*                 | JSON object containing  | [RFC7800]     |
     |                       | the cryptographic key   | Section 3.1   |
-    |                       | binding.  The cnf jwk   |               |
+    |                       | binding.  The cnf.jwk   |               |
     |                       | value MUST match with   |               |
     |                       | the one provided within |               |
     |                       | the related Credential. |               |
@@ -483,7 +487,7 @@ Table of Contents
    Content-Type: application/json
 
    {
-       "non_revocation_attestation": "eyJhbGciOiJFUzI1Ni ...",
+       "status_attestation": "eyJhbGciOiJFUzI1Ni ...",
    }
 
 9.  Security Considerations
