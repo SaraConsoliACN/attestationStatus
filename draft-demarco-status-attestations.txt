@@ -14,14 +14,13 @@ Expires: 13 June 2024           Istituto Poligrafico e Zecca dello Stato
 
 Abstract
 
-   Status Attestations are verifiable proofs that a digital credential
-   or token, whether in JSON Web Tokens (JWT) [RFC7519] or CBOR Web
-   Tokens (CWT) format [RFC8392], has not been revoked and is still
-   valid.  Status Attestations are designed to be short-lived,
-   periodically provided to their owners and presented by these latter
-   to the verifiers, eliminating the need for verifiers to obtain
-   additional information from third-party systems about a token or a
-   digital credential.
+   Status Attestations are verifiable proofs about the validity status
+   of a digital credential or token, in the form of JSON Web Tokens
+   (JWT) [RFC7519] or CBOR Web Tokens (CWT) format [RFC8392].  Status
+   Attestations are designed to be short-lived, periodically supplied to
+   their holders who then present them to verifiers.  This approach
+   eliminates the need for verifiers to seek additional information
+   about a token or digital credential from third-party systems.
 
 About This Document
 
@@ -132,13 +131,26 @@ Table of Contents
 
 3.  Terminology
 
-   Issuer:  An entity that ...
+   Issuer:  Entity that is responsible for the issuance of the Digital
+      Credentials.  This includes the lifecycle of the Credentials,
+      their issuance, and their validity status.
 
-   Relying Party:  An entity that.... Also known as Verifier.
+   Relying Party:  Entity that relies on the validity of the digital
+      credentials presented to it.  This entity, also known as a
+      Verifier, needs to verify the authenticity and validity of the
+      Credentials, including their revocation status, before accepting
+      them.
 
-   Wallet Instance:  An entity that.... Also known as Wallet.
+   Wallet Instance:  Entity that represents the digital Wallet of a
+      User.  Also known as Wallet or Holder, it is responsible for
+      storing and managing the User's digital credentials.  It can
+      present Credentials to Verifiers and request Status Attestations
+      from Issuers.
 
-   Attestation Owner:  An entity that.... Also known as Wallet.
+   Attestation Owner:  Entity that owns an attestation, typically the
+      Holder of the Digital Credential.  Also known as Wallet or Holder,
+      it is responsible for presenting the attestation, along with the
+      Digital Credential, to the Verifier.
 
 4.  Rationale
 
@@ -224,6 +236,12 @@ Table of Contents
    *  enables offline use cases as it MUST be statically validated using
       the cryptographic signature of the Issuer.
 
+   Note that in this specification the examples and the normative
+   properties of attestations are reported in accordance with the JWT
+   standard, while for the purposes of this specification, any
+   credential or attestation format format may be used, as long as all
+   attributes and requirements of the attributes are satisfied.
+
 6.  Status Attestation Request
 
    The Issuer provides the Wallet Instance with a Status Attestation,
@@ -241,7 +259,7 @@ Table of Contents
    +--------+----------+                         +----------+---------+
             |                                               |
             | HTTP POST /status                             |
-            |  credential_proof = $CredentialPoPJWT         |
+            |  credential_pop = $CredentialPoPJWT           |
             +----------------------------------------------->
             |                                               |
             |  Response with Status Attestation JWT         |
@@ -265,11 +283,11 @@ Table of Contents
 
    credential_pop=$CredentialPoPJWT
 
-   The Issuer verifies the signature of the PoP JWTs using the public
-   key contained in the client_assertion and the Credential, which is
-   the proof that the Wallet Instance owns the private keys associated
-   with the Wallet Instance Attestation and Credential.  Therefore the
-   Wallet Instance is entitled to request its Status Attestation.
+   The Issuer verifies the signature of the PoP using the public key
+   contained in the client_assertion and the Credential, which is the
+   proof that the Wallet Instance owns the private keys associated with
+   the Digital Credential.  Therefore the Wallet Instance is entitled to
+   request its Status Attestation.
 
 6.1.  Digital Credential Proof of Possession
 
@@ -289,7 +307,7 @@ Table of Contents
    .
    {
        "iss": "0b434530-e151-4c40-98b7-74c75a5ef760",
-       "aud": "https://issuer.example.org/",
+       "aud": "https://issuer.example.org",
        "iat": 1698744039,
        "exp": 1698744139,
        "jti": "6f204f7e-e453-4dfd-814e-9d155319408c",
@@ -380,17 +398,79 @@ Table of Contents
        }
    }
 
+   The Status Attestation MUST contain the following claims when the JWT
+   format is used.
+
+   +========+==========================================+===============+
+   | JOSE   | Description                              | Reference     |
+   | Header |                                          |               |
+   +========+==========================================+===============+
+   | *alg*  | A digital signature algorithm            | [RFC7515],    |
+   |        | identifier such as per IANA "JSON        | [RFC7517]     |
+   |        | Web Signature and Encryption             |               |
+   |        | Algorithms" registry.  It MUST NOT       |               |
+   |        | be set to none or to a symmetric         |               |
+   |        | algorithm (MAC) identifier.              |               |
+   +--------+------------------------------------------+---------------+
+   | *typ*  | It MUST be set to status-                | [RFC7515],    |
+   |        | attestation+jwt.                         | [RFC7517],    |
+   |        |                                          | this          |
+   |        |                                          | specification |
+   +--------+------------------------------------------+---------------+
+   | *kid*  | Unique identifier of the Issuer          | [RFC7638]     |
+   |        | jwk.                                     | Section 3     |
+   +--------+------------------------------------------+---------------+
+
+                                  Table 3
+
+    +=======================+=========================+===============+
+    | Claim                 | Description             | Reference     |
+    +=======================+=========================+===============+
+    | *iss*                 | It MUST be set to the   | [RFC9126] and |
+    |                       | identifier of the       | [RFC7519]     |
+    |                       | Issuer.                 |               |
+    +-----------------------+-------------------------+---------------+
+    | *iat*                 | UNIX Timestamp with the | [RFC9126] and |
+    |                       | time of there Status    | [RFC7519]     |
+    |                       | Attestation issuance.   |               |
+    +-----------------------+-------------------------+---------------+
+    | *exp*                 | UNIX Timestamp with the | [RFC9126] and |
+    |                       | expiry time of the      | [RFC7519]     |
+    |                       | Status Attestation.     |               |
+    +-----------------------+-------------------------+---------------+
+    | *credential_hash*     | Hash value of the       | This          |
+    |                       | Credential the Status   | specification |
+    |                       | Attestation is bound    |               |
+    |                       | to.                     |               |
+    +-----------------------+-------------------------+---------------+
+    | *credential_hash_alg* | The Algorithm used of   | This          |
+    |                       | hashing the Credential  | specification |
+    |                       | to which the Status     |               |
+    |                       | Attestation is bound.   |               |
+    |                       | The value SHOULD be set |               |
+    |                       | to S256.                |               |
+    +-----------------------+-------------------------+---------------+
+    | *cnf*                 | JSON object containing  | [RFC7800]     |
+    |                       | the cryptographic key   | Section 3.1   |
+    |                       | binding.  The cnf jwk   |               |
+    |                       | value MUST match with   |               |
+    |                       | the one provided within |               |
+    |                       | the related Credential. |               |
+    +-----------------------+-------------------------+---------------+
+
+                                  Table 4
+
 8.  Status Attestation Response
 
    The Issuer then returns the Status Attestation to the Wallet
    Instance, as in the following non-normative example.
 
-    HTTP/1.1 201 OK
-    Content-Type: application/json
+   HTTP/1.1 201 OK
+   Content-Type: application/json
 
-    {
-        "non_revocation_attestation": "eyJhbGciOiJFUzI1NiIsInR5cCI6IndhbGxldC1...",
-    }
+   {
+       "non_revocation_attestation": "eyJhbGciOiJFUzI1Ni ...",
+   }
 
 9.  Security Considerations
 
@@ -407,13 +487,30 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC7515]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web
+              Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
+              2015, <https://www.rfc-editor.org/rfc/rfc7515>.
+
    [RFC7516]  Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)",
               RFC 7516, DOI 10.17487/RFC7516, May 2015,
               <https://www.rfc-editor.org/rfc/rfc7516>.
 
+   [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
+              DOI 10.17487/RFC7517, May 2015,
+              <https://www.rfc-editor.org/rfc/rfc7517>.
+
    [RFC7519]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/rfc/rfc7519>.
+
+   [RFC7638]  Jones, M. and N. Sakimura, "JSON Web Key (JWK)
+              Thumbprint", RFC 7638, DOI 10.17487/RFC7638, September
+              2015, <https://www.rfc-editor.org/rfc/rfc7638>.
+
+   [RFC7800]  Jones, M., Bradley, J., and H. Tschofenig, "Proof-of-
+              Possession Key Semantics for JSON Web Tokens (JWTs)",
+              RFC 7800, DOI 10.17487/RFC7800, April 2016,
+              <https://www.rfc-editor.org/rfc/rfc7800>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
