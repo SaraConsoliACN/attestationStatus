@@ -14,14 +14,14 @@ Expires: 13 June 2024           Istituto Poligrafico e Zecca dello Stato
 
 Abstract
 
-   Status Attestations act as evidence that a specific credential or
-   token, whether in JSON Web Tokens (JWT) [RFC7519] or CBOR Web Tokens
-   (CWT) format [RFC8392], has not been revoked and is still valid.
-   Status Attestations are designed to be short-lived, periodically
-   provided to their owners and provided by these latter to the
-   verifiers, eliminating the need for verifiers to obtain additional
-   information from third-party systems about a token or a digital
-   credential.
+   Status Attestations are verifiable proofs that a digital credential
+   or token, whether in JSON Web Tokens (JWT) [RFC7519] or CBOR Web
+   Tokens (CWT) format [RFC8392], has not been revoked and is still
+   valid.  Status Attestations are designed to be short-lived,
+   periodically provided to their owners and presented by these latter
+   to the verifiers, eliminating the need for verifiers to obtain
+   additional information from third-party systems about a token or a
+   digital credential.
 
 About This Document
 
@@ -107,21 +107,21 @@ Table of Contents
    a balance between scalability, security, and privacy by minimizing
    the status information.
 
-+---------------------+                             +-------------------+
-|                     | Requests Status Attestation |                   |
-|                     |---------------------------->|                   |
-|   Wallet Instance   |                             | Credential Issuer |
-| (Holds credentials) |                             |    (JWT or CWT)   |
-|                     | Status Attestation          |                   |
-|                     |<----------------------------|                   |
-+---------------------+                             +-------------------+
+   +-----------------+                             +-------------------+
+   |                 | Requests Status Attestation |                   |
+   |                 |---------------------------->|                   |
+   | Wallet Instance |                             | Credential Issuer |
+   |                 |                             |    (JWT or CWT)   |
+   |                 | Status Attestation          |                   |
+   |                 |<----------------------------|                   |
+   +-----------------+                             +-------------------+
 
 
-+---------------------+                             +----------+
-|                     | Presents credential and     |          |
-|   Wallet Instance   | Status Attestation          | Verifier |
-|                     |---------------------------->|          |
-+---------------------+                             +----------+
+   +-- ----------------+                             +----------+
+   |                   | Presents credential and     |          |
+   |  Wallet Instance  | Status Attestation          | Verifier |
+   |                   |---------------------------->|          |
+   +-------------------+                             +----------+
 
 2.  Conventions and Definitions
 

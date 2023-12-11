@@ -8,10 +8,10 @@
 <meta content="Giuseppe De Marco" name="author">
 <meta content="Francesco Marino" name="author">
 <meta content="
-       Status Attestations act as evidence that a specific credential or token,
+       Status Attestations are verifiable proofs that a digital credential or token,
 whether in JSON Web Tokens (JWT)   or CBOR Web Tokens (CWT) format  ,
 has not been revoked and is still valid. Status Attestations are designed to be short-lived,
-periodically provided to their owners and provided by these latter to the verifiers,
+periodically provided to their owners and presented by these latter to the verifiers,
 eliminating the need for verifiers to obtain additional information from
 third-party systems about a token or a digital credential. 
     " name="description">
@@ -1072,10 +1072,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">OAuth Status Attestations</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Status Attestations act as evidence that a specific credential or token,
+<p id="section-abstract-1">Status Attestations are verifiable proofs that a digital credential or token,
 whether in JSON Web Tokens (JWT) <span>[<a href="#RFC7519" class="cite xref">RFC7519</a>]</span> or CBOR Web Tokens (CWT) format <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>,
 has not been revoked and is still valid. Status Attestations are designed to be short-lived,
-periodically provided to their owners and provided by these latter to the verifiers,
+periodically provided to their owners and presented by these latter to the verifiers,
 eliminating the need for verifiers to obtain additional information from
 third-party systems about a token or a digital credential.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
@@ -1207,21 +1207,21 @@ security of the digital credential system.
 They provide a balance between scalability, security, and privacy by minimizing the status information.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-ascii-art art-text artwork" id="section-1-4">
 <pre>
-+---------------------+                             +-------------------+
-|                     | Requests Status Attestation |                   |
-|                     |----------------------------&gt;|                   |
-|   Wallet Instance   |                             | Credential Issuer |
-| (Holds credentials) |                             |    (JWT or CWT)   |
-|                     | Status Attestation          |                   |
-|                     |&lt;----------------------------|                   |
-+---------------------+                             +-------------------+
++-----------------+                             +-------------------+
+|                 | Requests Status Attestation |                   |
+|                 |----------------------------&gt;|                   |
+| Wallet Instance |                             | Credential Issuer |
+|                 |                             |    (JWT or CWT)   |
+|                 | Status Attestation          |                   |
+|                 |&lt;----------------------------|                   |
++-----------------+                             +-------------------+
 
 
-+---------------------+                             +----------+
-|                     | Presents credential and     |          |
-|   Wallet Instance   | Status Attestation          | Verifier |
-|                     |----------------------------&gt;|          |
-+---------------------+                             +----------+
++-- ----------------+                             +----------+
+|                   | Presents credential and     |          |
+|  Wallet Instance  | Status Attestation          | Verifier |
+|                   |----------------------------&gt;|          |
++-------------------+                             +----------+
 </pre><a href="#section-1-4" class="pilcrow">¶</a>
 </div>
 </section>
