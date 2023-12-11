@@ -354,18 +354,18 @@ Table of Contents
    +==============+====================================+===============+
    | JOSE Payload | Description                        | Reference     |
    +==============+====================================+===============+
-   | *iss*        | Wallet identifier.                 | [RFC9126] and |
+   | *iss*        | Wallet identifier.                 | [RFC9126],    |
    |              |                                    | [RFC7519]     |
    +--------------+------------------------------------+---------------+
-   | *aud*        | It MUST be set to the              | [RFC9126] and |
+   | *aud*        | It MUST be set to the              | [RFC9126],    |
    |              | identifier of the                  | [RFC7519]     |
    |              | Credential Issuer.                 |               |
    +--------------+------------------------------------+---------------+
-   | *exp*        | UNIX Timestamp with the            | [RFC9126] and |
+   | *exp*        | UNIX Timestamp with the            | [RFC9126],    |
    |              | expiration time of the             | [RFC7519]     |
    |              | JWT.                               |               |
    +--------------+------------------------------------+---------------+
-   | *iat*        | UNIX Timestamp with the            | [RFC9126] and |
+   | *iat*        | UNIX Timestamp with the            | [RFC9126],    |
    |              | time of JWT issuance.              | [RFC7519]     |
    +--------------+------------------------------------+---------------+
    | *jti*        | Unique identifier for the          | [RFC7519]     |
@@ -438,15 +438,15 @@ Table of Contents
     +=======================+=========================+===============+
     | JOSE Payload          | Description             | Reference     |
     +=======================+=========================+===============+
-    | *iss*                 | It MUST be set to the   | [RFC9126] and |
+    | *iss*                 | It MUST be set to the   | [RFC9126],    |
     |                       | identifier of the       | [RFC7519]     |
     |                       | Issuer.                 |               |
     +-----------------------+-------------------------+---------------+
-    | *iat*                 | UNIX Timestamp with the | [RFC9126] and |
+    | *iat*                 | UNIX Timestamp with the | [RFC9126],    |
     |                       | time of there Status    | [RFC7519]     |
     |                       | Attestation issuance.   |               |
     +-----------------------+-------------------------+---------------+
-    | *exp*                 | UNIX Timestamp with the | [RFC9126] and |
+    | *exp*                 | UNIX Timestamp with the | [RFC9126],    |
     |                       | expiry time of the      | [RFC7519]     |
     |                       | Status Attestation.     |               |
     +-----------------------+-------------------------+---------------+
