@@ -102,10 +102,11 @@ Table of Contents
    proof of the credential's non-revocation status.
 
    Status Attestations are designed to preserve privacy and are
-   essential for enabling offline use cases, thereby ensuring the
-   security of the digital credential system.  Status Attestations
-   provide a balance between scalability, security, and privacy by
-   minimizing the status information.
+   essential for enabling offline use cases, where both the wallet and
+   the verifier are not connected to internet during the presentation
+   phase, thereby ensuring the security of the digital credential
+   system.  Status Attestations provide a balance between scalability,
+   security, and privacy by minimizing the status information.
 
    +-----------------+                             +-------------------+
    |                 | Requests Status Attestation |                   |
@@ -147,11 +148,6 @@ Table of Contents
       responsible for storing and managing the User's digital
       Credentials.  It can present Credentials to Verifiers and request
       Status Attestations from Issuers.
-
-   Attestation Owner:  Entity that owns an attestation, typically the
-      holder of the Digital Credential.  Also known as Wallet or Holder,
-      it is responsible for presenting the attestation, along with the
-      Digital Credential, to the Verifier.
 
 4.  Rationale
 
@@ -198,10 +194,9 @@ Table of Contents
        potential privacy leaks.
 
    2.  *Static Verification*: Status Attestations are designed to be
-       statically provided to Verifiers by Wallet Instance (Attestation
-       Owner).  Once an Attestation is issued, it can be verified
-       without any further communication with the Issuer or any other
-       party.
+       statically provided to Verifiers by Wallet Instance.  Once an
+       Attestation is issued, it can be verified without any further
+       communication with the Issuer or any other party.
 
    3.  *Token Formats*: Status Attestations are agnostic from the token
        or digital credential format to which they are bound.
