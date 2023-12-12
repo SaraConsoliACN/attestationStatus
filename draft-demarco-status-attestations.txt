@@ -77,11 +77,15 @@ Table of Contents
      6.1.  Digital Credential Proof of Possession
    7.  Status Attestation
    8.  Status Attestation Response
-   9.  Security Considerations
-   10. IANA Considerations
-     10.1.  JSON Web Token Claims Registration
-     10.2.  Media Type Registration
-   11. Normative References
+   9.  Issuers Supporting Status Attestations
+     9.1.  Issuer Metadata
+     9.2.  Issued Credentials
+   10. Presenting Status Attestations
+   11. Security Considerations
+   12. IANA Considerations
+     12.1.  JSON Web Token Claims Registration
+     12.2.  Media Type Registration
+   13. Normative References
    Acknowledgments
    Authors' Addresses
 
@@ -496,13 +500,59 @@ Table of Contents
        "status_attestation": "eyJhbGciOiJFUzI1Ni ...",
    }
 
-9.  Security Considerations
+9.  Issuers Supporting Status Attestations
+
+9.1.  Issuer Metadata
+
+   The Issuers that uses the Status Attestations MUST include in their
+   OpenID4VCI [@!OpenID.VCI] metadata the claim
+   status_attestation_endpoint, which its value MUST be an HTTPs URL,
+   indicating the endpoint where the Wallet Instances can request Status
+   Attestations.
+
+9.2.  Issued Credentials
+
+   The Issuers that uses the Status Attestations SHOULD include in the
+   issued Credentials the object status with the JSON member
+   status_attestation set to true, as the non-normative example of an
+   unsecured payload of an SD-JWT VC is shown below.  When the
+   status_attestation is not present, it defaults to false.
+
+      TODO: alignments with the OAuth2 Status List schema and IANA
+      registration.
+
+   {
+    "vct": "https://credentials.example.com/identity_credential",
+    "given_name": "John",
+    "family_name": "Doe",
+    "email": "johndoe@example.com",
+    "phone_number": "+1-202-555-0101",
+    "address": {
+      "street_address": "123 Main St",
+      "locality": "Anytown",
+      "region": "Anystate",
+      "country": "US"
+    },
+    "birthdate": "1940-01-01",
+    "is_over_18": true,
+    "is_over_21": true,
+    "is_over_65": true,
+    "status": {
+       "status_attestation": true
+    }
+   }
+
+10.  Presenting Status Attestations
+
+   TBD.
+
+11.  Security Considerations
 
    TODO Security
 
-10.  IANA Considerations
+12.  IANA Considerations
 
-10.1.  JSON Web Token Claims Registration
+12.1.  JSON Web Token Claims Registration
 
    This specification requests registration of the following Claims in
    the IANA "JSON Web Token Claims" registry [@IANA.JWT] established by
@@ -554,7 +604,7 @@ Table of Contents
    *  Specification Document(s): [[ (#status-attestation) of this
       specification ]]
 
-10.2.  Media Type Registration
+12.2.  Media Type Registration
 
    This section requests registration of the following media types
    [@RFC2046] in the "Media Types" registry [@IANA.MediaTypes] in the
@@ -650,7 +700,7 @@ Table of Contents
 
    *  Provisional registration?  No
 
-11.  Normative References
+13.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
