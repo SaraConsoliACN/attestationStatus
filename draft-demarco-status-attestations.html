@@ -1779,7 +1779,7 @@ Content-Type: application/json
         </h3>
 <p id="section-9.1-1">The Issuers that uses the Status Attestations <span class="bcp14">MUST</span> include in their
 OpenID4VCI [@!OpenID.VCI] metadata the claim <code>status_attestation_endpoint</code>,
-which its value <span class="bcp14">MUST</span> be an HTTPs URL, indicating the endpoint where
+which its value <span class="bcp14">MUST</span> be an HTTPs URL indicating the endpoint where
 the Wallet Instances can request Status Attestations.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1849,7 +1849,7 @@ related Digital Credential.<a href="#section-10-1" class="pilcrow">¶</a></p>
           <p id="section-10-3.1.1">Decode and validate the Digital Credential;<a href="#section-10-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-10-3.2">
-          <p id="section-10-3.2.1">check the presence of <code>status.status_attestation</code>, if present the Verifier <span class="bcp14">SHOULD</span>:<a href="#section-10-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-10-3.2.1">check the presence of <code>status.status_attestation</code> in the Digital Credential. If true, the Verifier <span class="bcp14">SHOULD</span>:<a href="#section-10-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-10-3.2.2.1">
               <p id="section-10-3.2.2.1.1">produce the hash of the Digital Credential using the hashing algoritm defined in <code>status.status_attestation</code>;<a href="#section-10-3.2.2.1.1" class="pilcrow">¶</a></p>
@@ -2128,7 +2128,24 @@ in [@RFC6838].<a href="#section-12.2-1" class="pilcrow">¶</a></p>
       <h2 id="name-acknowledgments">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">We would like to thank:<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-2.1">
+          <p id="appendix-A-2.1.1">Paul Bastien<a href="#appendix-A-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.2">
+          <p id="appendix-A-2.2.1">Riccardo Iaconelli<a href="#appendix-A-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.3">
+          <p id="appendix-A-2.3.1">Victor Näslund<a href="#appendix-A-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.4">
+          <p id="appendix-A-2.4.1">Giada Sciarretta<a href="#appendix-A-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.5">
+          <p id="appendix-A-2.5.1">Amir Sharif<a href="#appendix-A-2.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="document-history">

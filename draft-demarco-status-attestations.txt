@@ -508,7 +508,7 @@ Table of Contents
 
    The Issuers that uses the Status Attestations MUST include in their
    OpenID4VCI [@!OpenID.VCI] metadata the claim
-   status_attestation_endpoint, which its value MUST be an HTTPs URL,
+   status_attestation_endpoint, which its value MUST be an HTTPs URL
    indicating the endpoint where the Wallet Instances can request Status
    Attestations.
 
@@ -563,8 +563,8 @@ Table of Contents
 
    *  Decode and validate the Digital Credential;
 
-   *  check the presence of status.status_attestation, if present the
-      Verifier SHOULD:
+   *  check the presence of status.status_attestation in the Digital
+      Credential.  If true, the Verifier SHOULD:
 
       -  produce the hash of the Digital Credential using the hashing
          algoritm defined in status.status_attestation;
@@ -769,7 +769,17 @@ Table of Contents
 
 Appendix A.  Acknowledgments
 
-   TODO acknowledge.
+   We would like to thank:
+
+   *  Paul Bastien
+
+   *  Riccardo Iaconelli
+
+   *  Victor Näslund
+
+   *  Giada Sciarretta
+
+   *  Amir Sharif
 
 Appendix B.  Document History
 
