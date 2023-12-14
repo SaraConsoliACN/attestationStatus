@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-12T00:49:47.702702+00:00",
+  "timestamp": "2023-12-14T00:48:12.538469+00:00",
   "repo": "peppelinux/draft-demarco-status-attestations",
   "labels": [
     {
@@ -50,5 +50,198 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOK4XJ0s5hyqCy",
+      "title": "Editorial Revision",
+      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/pull/1",
+      "state": "MERGED",
+      "author": "asharif1990",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-12T13:11:45Z",
+      "updatedAt": "2023-12-12T15:42:31Z",
+      "baseRepository": "peppelinux/draft-demarco-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "7d5de6ace0457c8275377a97406550aa5ddc88c5",
+      "headRepository": "asharif1990/draft-demarco-status-attestations",
+      "headRefName": "revision",
+      "headRefOid": "c88a6f0e1b7056ac6aaeea596377f709a490c1f2",
+      "closedAt": "2023-12-12T15:42:31Z",
+      "mergedAt": "2023-12-12T15:42:31Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "8c668103f2c6fc0aad9268948e07cdd62d9da07f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5p8csk",
+          "commit": {
+            "abbreviatedOid": "9059880"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-12-12T13:20:04Z",
+          "updatedAt": "2023-12-12T13:22:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "@asharif1990 I used the defined terms after their definition, withing the dedicated section.\r\n\r\nAbstract and introduction sections doesn't define nothing\r\n\r\nI'm available to merge these but I'd like to ask you to get informed from other authors about this before merging",
+              "createdAt": "2023-12-12T13:20:04Z",
+              "updatedAt": "2023-12-12T13:22:37Z"
+            },
+            {
+              "originalPosition": 80,
+              "body": "here we don't have the definition of Digital Credentials for example",
+              "createdAt": "2023-12-12T13:20:43Z",
+              "updatedAt": "2023-12-12T13:22:37Z"
+            },
+            {
+              "originalPosition": 346,
+              "body": "it is a SHOULD since a RP may check the revocation or not, depending by different factors.\r\n\r\nthere are some credentials that even if expired doesn't mean that are not usable, eg: age over.\r\n\r\nthen for RP's viewpoint it is a SHOULD and not a MUST",
+              "createdAt": "2023-12-12T13:22:25Z",
+              "updatedAt": "2023-12-12T13:22:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p8ec3",
+          "commit": {
+            "abbreviatedOid": "9059880"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-12-12T13:23:42Z",
+          "updatedAt": "2023-12-12T13:26:20Z",
+          "comments": [
+            {
+              "originalPosition": 170,
+              "body": "the MUST is listed in each requirement, there may be some requirement in the future with SHOULD. That's why I prefer to use the normative language within each point",
+              "createdAt": "2023-12-12T13:23:43Z",
+              "updatedAt": "2023-12-12T13:26:20Z"
+            },
+            {
+              "originalPosition": 236,
+              "body": "```suggestion\r\n- The Credential Issuer MUST verify the signature of the `credential_pop` object using\r\n```",
+              "createdAt": "2023-12-12T13:24:14Z",
+              "updatedAt": "2023-12-12T13:26:20Z"
+            },
+            {
+              "originalPosition": 263,
+              "body": "`MUST be equal to JWK thumbprint of the key in `cnf` Claim of Wallet Instance Attestation`\r\n\r\nthis is the italian impl profile, not of interest in the IETF OAuth WG, please remove. IT is also not compatible with the DE approach, while we have achieved a compromise that I want to respect in any place.",
+              "createdAt": "2023-12-12T13:25:10Z",
+              "updatedAt": "2023-12-12T13:26:20Z"
+            },
+            {
+              "originalPosition": 263,
+              "body": "```suggestion\r\n| **iss** | Wallet identifier. | {{RFC9126}}, {{RFC7519}} |\r\n```",
+              "createdAt": "2023-12-12T13:25:27Z",
+              "updatedAt": "2023-12-12T13:26:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p80Cw",
+          "commit": {
+            "abbreviatedOid": "9059880"
+          },
+          "author": "asharif1990",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-12T14:03:48Z",
+          "updatedAt": "2023-12-12T14:03:48Z",
+          "comments": [
+            {
+              "originalPosition": 346,
+              "body": "Okay, this sounds reasonable to me. However, somehow we should include this inside the draft, otherwise having should would be strange if you agree. ",
+              "createdAt": "2023-12-12T14:03:48Z",
+              "updatedAt": "2023-12-12T14:03:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p9CfR",
+          "commit": {
+            "abbreviatedOid": "9059880"
+          },
+          "author": "asharif1990",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-12T14:30:10Z",
+          "updatedAt": "2023-12-12T14:30:11Z",
+          "comments": [
+            {
+              "originalPosition": 170,
+              "body": "okay. then probably, I will re-write it in a more natural way such as: \"The general requirements for the implementation of  Status Attestation are listed in this section.\"",
+              "createdAt": "2023-12-12T14:30:10Z",
+              "updatedAt": "2023-12-12T14:30:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p9GEu",
+          "commit": {
+            "abbreviatedOid": "9059880"
+          },
+          "author": "asharif1990",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-12T14:36:28Z",
+          "updatedAt": "2023-12-12T14:36:29Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Okay, you are right. In the abstract and intro, it is possible to avoid them. I wasn't familiar with IETF style. we can avoid the capitalized terms in the intro and abstract then",
+              "createdAt": "2023-12-12T14:36:29Z",
+              "updatedAt": "2023-12-12T14:36:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p94mM",
+          "commit": {
+            "abbreviatedOid": "95ccedb"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-12T15:41:57Z",
+          "updatedAt": "2023-12-12T15:41:57Z",
+          "comments": [
+            {
+              "originalPosition": 349,
+              "body": "```suggestion\r\n- check the presence of `status.status_attestation` in the Digital Credential. If true, the Verifier SHOULD:\r\n```",
+              "createdAt": "2023-12-12T15:41:57Z",
+              "updatedAt": "2023-12-12T15:41:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5p95Ro",
+          "commit": {
+            "abbreviatedOid": "c88a6f0"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-12T15:42:23Z",
+          "updatedAt": "2023-12-12T15:42:23Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
