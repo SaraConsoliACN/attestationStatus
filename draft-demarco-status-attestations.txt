@@ -4,9 +4,11 @@
 
 Network Working Group                                        G. D. Marco
 Internet-Draft               Dipartimento per la trasformazione digitale
-Intended status: Informational                                 F. Marino
-Expires: 20 July 2024           Istituto Poligrafico e Zecca dello Stato
-                                                         17 January 2024
+Intended status: Informational                                 O. Steele
+Expires: 4 August 2024                                         Transmute
+                                                               F. Marino
+                                Istituto Poligrafico e Zecca dello Stato
+                                                         1 February 2024
 
 
                        OAuth Status Attestations
@@ -50,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 July 2024.
+   This Internet-Draft will expire on 4 August 2024.
 
 Copyright Notice
 
@@ -820,6 +822,11 @@ Authors' Addresses
    Giuseppe De Marco
    Dipartimento per la trasformazione digitale
    Email: gi.demarco@innovazione.gov.it
+
+
+   Orie Steele
+   Transmute
+   Email: orie@transmute.industries
 
 
    Francesco Marino
