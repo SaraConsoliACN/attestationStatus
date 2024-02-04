@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T00:48:21.877105+00:00",
+  "timestamp": "2024-02-04T00:50:06.945827+00:00",
   "repo": "peppelinux/draft-demarco-status-attestations",
   "labels": [
     {
@@ -49,7 +49,32 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOK4XJ0s5-J5yj",
+      "title": "Credential jwt in the status attestation request",
+      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/issues/3",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "For privacy and security reasons, we should remove the credential jwt from the status attestation request. \nThe credential_pop value should be a unique identifier of the credential, for example the hash value of the credential.\nThe credential issuer is able to get the credential from the hash value, check the status and return the status attestation. ",
+      "createdAt": "2024-02-03T15:11:07Z",
+      "updatedAt": "2024-02-03T22:49:39Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "If we proceed with the approach of not accessing the credential in secure storage (thus not requiring user consent), the unique identifier would not be derived from the credential attributes. This means there could be JWTs without a jti or other credential formats lacking unique identifiers. \r\n\r\nConsequently, to uniquely identify a credential, it would be necessary to use a hash of the credential itself. For a JWT, this would involve hashing the JWT; for an mDoc in CBOR format, it would involve hashing its base64 representation, and so forth.",
+          "createdAt": "2024-02-03T15:16:02Z",
+          "updatedAt": "2024-02-03T22:49:39Z"
+        }
+      ]
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -239,6 +264,48 @@
           "body": "",
           "createdAt": "2023-12-12T15:42:23Z",
           "updatedAt": "2023-12-12T15:42:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOK4XJ0s5ls8PL",
+      "title": "added Orie as co-author",
+      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/pull/2",
+      "state": "MERGED",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-01T13:36:24Z",
+      "updatedAt": "2024-02-01T19:54:14Z",
+      "baseRepository": "peppelinux/draft-demarco-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "3202bedcfab318cf186432117e2ba8dec58f1d5a",
+      "headRepository": "peppelinux/draft-demarco-status-attestations",
+      "headRefName": "orie",
+      "headRefOid": "c6223b86147b3b9ff5badd6b7a5c961de3459e93",
+      "closedAt": "2024-02-01T19:54:13Z",
+      "mergedAt": "2024-02-01T19:54:13Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "70bc694739ca1b7b7d5db85a3ce5a83e346cb9e5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5uqQVo",
+          "commit": {
+            "abbreviatedOid": "c6223b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-01T13:59:51Z",
+          "updatedAt": "2024-02-01T13:59:51Z",
           "comments": []
         }
       ]
