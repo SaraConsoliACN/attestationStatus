@@ -5,14 +5,14 @@
 Network Working Group                                        G. D. Marco
 Internet-Draft               Dipartimento per la trasformazione digitale
 Intended status: Informational                                 O. Steele
-Expires: 4 August 2024                                         Transmute
+Expires: 9 August 2024                                         Transmute
                                                                F. Marino
                                 Istituto Poligrafico e Zecca dello Stato
-                                                         1 February 2024
+                                                         6 February 2024
 
 
                        OAuth Status Attestations
-                draft-demarco-status-attestations-latest
+             draft-demarco-oauth-status-attestations-latest
 
 Abstract
 
@@ -32,7 +32,7 @@ About This Document
    https://peppelinux.github.io/draft-demarco-status-attestations/draft-
    demarco-status-attestations.html.  Status information for this
    document may be found at https://datatracker.ietf.org/doc/draft-
-   demarco-status-attestations/.
+   demarco-oauth-status-attestations/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/peppelinux/draft-demarco-status-attestations.
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2024.
+   This Internet-Draft will expire on 9 August 2024.
 
 Copyright Notice
 
