@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T00:44:47.465981+00:00",
-  "repo": "peppelinux/draft-demarco-status-attestations",
+  "timestamp": "2024-02-08T00:44:46.346574+00:00",
+  "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
       "name": "bug",
@@ -54,7 +54,7 @@
       "number": 3,
       "id": "I_kwDOK4XJ0s5-J5yj",
       "title": "Credential jwt in the status attestation request",
-      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/issues/3",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/3",
       "state": "OPEN",
       "author": "fmarino-ipzs",
       "authorAssociation": "NONE",
@@ -73,6 +73,46 @@
           "updatedAt": "2024-02-03T22:49:39Z"
         }
       ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOK4XJ0s5-io_4",
+      "title": "todo: privacy considerations section",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/4",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "it is really required and also requested be ppl from the IETF ML",
+      "createdAt": "2024-02-07T13:13:09Z",
+      "updatedAt": "2024-02-07T13:40:42Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "> IMO, neither the \"Token Status List\", nor to the \"OAuth Status Attestations\" are the right way to address two privacy considerations: \"Unlinkability between verifiers\" and \"Untrackability by digital credential issuers\".\r\n\r\nhere my notes\r\n\r\n**Unlinkability between verifiers**\r\nStatus Attestations are designed to be privacy-preserving by not requiring verifiers to gather any additional information from third-party entities. This means that each verifier independently verifies the status of a digital credential, though the status attestation, without needing to interact with or reveal information to other verifiers or third-party status list providers. This approach ensures that actions performed by one verifier cannot be linked to actions performed by another verifier, maintaining unlinkability between them.\r\n\r\n**Untrackability by digital credential issuers**\r\nSince Status Attestations can be verified statically without further communication with the credential issuer or any other party, the issuer cannot track when or where the digital credential is being verified. This is in contrast to models where the verifier must query a central status list or the issuer directly, which would allow the issuer to track the usage of the digital credential. By providing all necessary information within the Status Attestation itself, it ensures that the issuer cannot track the verification activities related to a specific digital credential.",
+          "createdAt": "2024-02-07T13:40:31Z",
+          "updatedAt": "2024-02-07T13:40:42Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOK4XJ0s5-ipmt",
+      "title": "Change draft name",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/5",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "> it would be good to avoid the term \"attestations\" because it is already used for a different purpose (in the IETF).\r\n\r\nCould it be \"status tokens\" or \"status assertions\"?",
+      "createdAt": "2024-02-07T13:14:29Z",
+      "updatedAt": "2024-02-07T13:14:29Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -80,7 +120,7 @@
       "number": 1,
       "id": "PR_kwDOK4XJ0s5hyqCy",
       "title": "Editorial Revision",
-      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/pull/1",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/1",
       "state": "MERGED",
       "author": "asharif1990",
       "authorAssociation": "CONTRIBUTOR",
@@ -89,7 +129,7 @@
       "body": "",
       "createdAt": "2023-12-12T13:11:45Z",
       "updatedAt": "2023-12-12T15:42:31Z",
-      "baseRepository": "peppelinux/draft-demarco-status-attestations",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "baseRefName": "main",
       "baseRefOid": "7d5de6ace0457c8275377a97406550aa5ddc88c5",
       "headRepository": "asharif1990/draft-demarco-status-attestations",
@@ -272,7 +312,7 @@
       "number": 2,
       "id": "PR_kwDOK4XJ0s5ls8PL",
       "title": "added Orie as co-author",
-      "url": "https://github.com/peppelinux/draft-demarco-status-attestations/pull/2",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/2",
       "state": "MERGED",
       "author": "peppelinux",
       "authorAssociation": "OWNER",
@@ -281,10 +321,10 @@
       "body": "",
       "createdAt": "2024-02-01T13:36:24Z",
       "updatedAt": "2024-02-01T19:54:14Z",
-      "baseRepository": "peppelinux/draft-demarco-status-attestations",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "baseRefName": "main",
       "baseRefOid": "3202bedcfab318cf186432117e2ba8dec58f1d5a",
-      "headRepository": "peppelinux/draft-demarco-status-attestations",
+      "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "headRefName": "orie",
       "headRefOid": "c6223b86147b3b9ff5badd6b7a5c961de3459e93",
       "closedAt": "2024-02-01T19:54:13Z",
