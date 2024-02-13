@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-11T00:49:59.367045+00:00",
+  "timestamp": "2024-02-13T00:46:08.457225+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -111,6 +111,22 @@
       "body": "> it would be good to avoid the term \"attestations\" because it is already used for a different purpose (in the IETF).\r\n\r\nCould it be \"status tokens\" or \"status assertions\"?",
       "createdAt": "2024-02-07T13:14:29Z",
       "updatedAt": "2024-02-07T13:14:29Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOK4XJ0s5_BrbI",
+      "title": "Error Codes",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/7",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "If the Status Attestation is requested for a non-existent, expired, revoked, or invalid Digital Credential, or the HTTP Request is not valid (missing or invalid parameters) the Credential Issuer MUST respond with an HTTP Response including the following parameters:\r\n\r\n- error: The proper error code\r\n- error_description: Human-readable text providing additional information, used to assist the Wallet Instance in understanding the error that occurred (e.g. some attributes are changed, revocation reason, etc.)\r\n\r\n```\r\n HTTP/1.1 400 Bad Request\r\n     Content-Type: application/json;charset=UTF-8\r\n     Cache-Control: no-store\r\n     Pragma: no-cache\r\n\r\n     {\r\n       \"error\":\"invalid_request\"\r\n       \"error_description\": \"The signature of credential_pop JWT is not valid\"\r\n     }\r\n```\r\n\r\nIt could be useful to add an error code section.",
+      "createdAt": "2024-02-12T23:06:15Z",
+      "updatedAt": "2024-02-12T23:06:15Z",
       "closedAt": null,
       "comments": []
     }
@@ -347,6 +363,53 @@
           "createdAt": "2024-02-01T13:59:51Z",
           "updatedAt": "2024-02-01T13:59:51Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOK4XJ0s5msEjT",
+      "title": "fix: credential hash in the credential_pop",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/6",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR closes #3 \r\n",
+      "createdAt": "2024-02-12T22:44:00Z",
+      "updatedAt": "2024-02-12T22:46:19Z",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "650bb023e094b022588e6327cdce8c9c213ac441",
+      "headRepository": "fmarino-ipzs/draft-demarco-oauth-status-attestations",
+      "headRefName": "credential-pop",
+      "headRefOid": "531587031a12a1ff53fc1f28eb563550f578f537",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5v2SmY",
+          "commit": {
+            "abbreviatedOid": "5315870"
+          },
+          "author": "fmarino-ipzs",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T22:46:19Z",
+          "updatedAt": "2024-02-12T22:46:19Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "@peppelinux probably we could remove the credential_format. \r\nWDYT?",
+              "createdAt": "2024-02-12T22:46:19Z",
+              "updatedAt": "2024-02-12T22:46:19Z"
+            }
+          ]
         }
       ]
     }
