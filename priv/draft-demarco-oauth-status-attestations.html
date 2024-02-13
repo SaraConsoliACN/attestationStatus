@@ -1208,6 +1208,12 @@ without requiring to query any third-party entities.<a href="#section-abstract-1
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.4">
                 <p id="section-toc.1-1.12.2.4.1"><a href="#section-12.4" class="auto internal xref">12.4</a>.  <a href="#name-untrackability-by-digital-c" class="internal xref">Untrackability by Digital Credential Issuers</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.5">
+                <p id="section-toc.1-1.12.2.5.1"><a href="#section-12.5" class="auto internal xref">12.5</a>.  <a href="#name-minimization-of-data-exposu" class="internal xref">Minimization of Data Exposure</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.6">
+                <p id="section-toc.1-1.12.2.6.1"><a href="#section-12.6" class="auto internal xref">12.6</a>.  <a href="#name-resistance-to-enumeration-a" class="internal xref">Resistance to Enumeration Attacks</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
@@ -1943,7 +1949,23 @@ allowing Verifiers to examine and make educated conclusions based on a variety o
 <a href="#section-12.4" class="section-number selfRef">12.4. </a><a href="#name-untrackability-by-digital-c" class="section-name selfRef">Untrackability by Digital Credential Issuers</a>
         </h3>
 <p id="section-12.4-1">Another cornerstone of the privacy-preserving features of Status Attestations is the prevention of tracking by digital credential issuers. Unlike models that require verifiers to query a central status list or the issuer directly, Status Attestations contain all necessary information for verification within the attestation itself. This approach ensures that the credential issuer cannot monitor when or where a digital credential is verified, thus significantly enhancing the privacy of the credential holder. By eliminating the need for real-time communication with the issuer for status checks, Status Attestations ensure that verification activities remain untrackable by the issuer, further solidifying the system's commitment to user privacy.<a href="#section-12.4-1" class="pilcrow">¶</a></p>
-<p id="section-12.4-2">These privacy considerations are integral to the design of Status Attestations and reflect a deliberate effort to balance security and privacy needs in the digital credential ecosystem. By adhering to these principles, Status Attestations contribute to a more secure and privacy-respecting digital world.<a href="#section-12.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="minimization-of-data-exposure">
+<section id="section-12.5">
+        <h3 id="name-minimization-of-data-exposu">
+<a href="#section-12.5" class="section-number selfRef">12.5. </a><a href="#name-minimization-of-data-exposu" class="section-name selfRef">Minimization of Data Exposure</a>
+        </h3>
+<p id="section-12.5-1">The Status Attestations are desing around the data minimization principle. Data minimization ensures that only the necessary information required for the scope of attesting the non revocation status of the digital credential. This minimizes the exposure of potentially sensitive data.<a href="#section-12.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="resistance-to-enumeration-attacks">
+<section id="section-12.6">
+        <h3 id="name-resistance-to-enumeration-a">
+<a href="#section-12.6" class="section-number selfRef">12.6. </a><a href="#name-resistance-to-enumeration-a" class="section-name selfRef">Resistance to Enumeration Attacks</a>
+        </h3>
+<p id="section-12.6-1">The design of Status Attestations incorporates measures to resist enumeration attacks, where an adversary attempts to gather information by systematically verifying different combinations of data. By implementing robust cryptographic techniques and limiting the information contained in status attestations, the system reduces the feasibility of such attacks. This consideration is vital for safeguarding the privacy of the credential holders and for ensuring the integrity of the verification process.<a href="#section-12.6-1" class="pilcrow">¶</a></p>
+<p id="section-12.6-2">These privacy considerations are integral to the design of Status Attestations and reflect a deliberate effort to balance security and privacy needs in the digital credential ecosystem. By adhering to these principles, Status Attestations contribute to a more secure and privacy-respecting digital world.<a href="#section-12.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
