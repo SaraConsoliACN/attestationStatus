@@ -1040,7 +1040,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Marco, et al.</td>
-<td class="center">Expires 9 August 2024</td>
+<td class="center">Expires 17 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1053,12 +1053,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-demarco-oauth-status-attestations-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-06" class="published">6 February 2024</time>
+<time datetime="2024-02-14" class="published">14 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-09">9 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-17">17 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ without requiring to query any third-party entities.<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1166,7 +1166,10 @@ without requiring to query any third-party entities.<a href="#section-abstract-1
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-status-attestation-request" class="internal xref">Status Attestation Request</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-digital-credential-proof-of" class="internal xref">Digital Credential Proof of Possession</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-status-attestation-request-" class="internal xref">Status Attestation Request Errors</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-digital-credential-proof-of" class="internal xref">Digital Credential Proof of Possession</a></p>
 </li>
             </ul>
 </li>
@@ -1325,7 +1328,7 @@ to check the revocation status of a Digital Credential at the time of
 presentation, or situations where the Verifier should not be allowed to
 check the status of a Digital Credential over time due to some privacy constraints,
 in compliance with national privacy regulations.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">TODO: Add an example of national privacy constraints to give the reader some intuition.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-3">For instance, consider a scenario under the European Union's General Data Protection Regulation (GDPR), where a Verifier's repeated access to a Status List to check the revocation status of a Digital Credential could be deemed as excessive monitoring of the End-User's activities. This could potentially infringe upon the End-User's right to privacy, as outlined in Article 8 of the European Convention on Human Rights, by creating a detailed profile of the End-User's interactions and credential usage without explicit consent for such continuous surveillance.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">In scenarios where the Verifier, Credential Issuer, and OAuth Status List
 Provider are all part of the same domain or operate within a context where
 a high level of trust exists between them and the End-User, the OAuth
@@ -1482,19 +1485,47 @@ the public key contained in the Digital Credential;<a href="#section-6-7.1.1" cl
       </ul>
 <p id="section-6-8">The technical and details about the <code>credential_pop</code> object
 are defined in the next section.<a href="#section-6-8" class="pilcrow">¶</a></p>
-<div id="digital-credential-proof-of-possession">
+<div id="status-attestation-request-errors">
 <section id="section-6.1">
-        <h3 id="name-digital-credential-proof-of">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-digital-credential-proof-of" class="section-name selfRef">Digital Credential Proof of Possession</a>
+        <h3 id="name-status-attestation-request-">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-status-attestation-request-" class="section-name selfRef">Status Attestation Request Errors</a>
         </h3>
-<p id="section-6.1-1">The Wallet Instance that holds a Digital Credential, when requests a Status Attestation,
-<span class="bcp14">MUST</span> demonstrate the proof of possession of the Digital Credential to the Credential Issuer.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">The proof of possession is made by enclosing the Digital Credential in an
-object (JWT) signed with the private key that its related public key is referenced in the Digital Credential.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3">Below is a non-normative example of a Credential proof of possession with
-the JWT headers and payload are represented without applying signature and
-encoding, for better readability:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">In cases where a Status Attestation request is made for a Digital Credential that does not exist, has expired, been revoked, or is in any way invalid, or if the HTTP Request is compromised by missing or incorrect parameters, the Credential Issuer is required to respond with an HTTP Response. This response should have a status code of <code>400</code> and use <code>application/json</code> as the content type, including the following parameters:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.1-2.1">
+            <p id="section-6.1-2.1.1"><code>error</code>, <span class="bcp14">REQUIRED</span>. The value must be assigned one of the error types as specified in the OAuth 2.0 RFC <a href="https://tools.ietf.org/html/rfc6749#section-5.2">Section 5.2</a>;<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.1-2.2">
+            <p id="section-6.1-2.2.1"><code>error_description</code>, <span class="bcp14">OPTIONAL</span>. Text in human-readable form that offers more details to clarify the nature of the error encountered (for instance, changes in some attributes, reasons for revocation, other).<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-6.1-3">Below a non-normative example of an HTTP Response with an error.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.1-4">
+<pre>
+  HTTP/1.1 400 Bad Request
+  Content-Type: application/json;charset=UTF-8
+
+  {
+    "error":"invalid_request"
+    "error_description": "The signature of credential_pop JWT is not valid"
+  }
+</pre><a href="#section-6.1-4" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="digital-credential-proof-of-possession">
+<section id="section-6.2">
+        <h3 id="name-digital-credential-proof-of">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-digital-credential-proof-of" class="section-name selfRef">Digital Credential Proof of Possession</a>
+        </h3>
+<p id="section-6.2-1">The Wallet Instance that holds a Digital Credential, when requests a Status Attestation,
+<span class="bcp14">MUST</span> demonstrate the proof of possession of the Digital Credential to the Credential Issuer.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">The proof of possession is made by enclosing the Digital Credential in an
+object (JWT) signed with the private key that its related public key is referenced in the Digital Credential.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">Below is a non-normative example of a Credential proof of possession with
+the JWT headers and payload are represented without applying signature and
+encoding, for better readability:<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.2-4">
 <pre>
 {
     "alg": "ES256",
@@ -1512,9 +1543,9 @@ encoding, for better readability:<a href="#section-6.1-3" class="pilcrow">¶</a>
     "credential_format": "vc+sd-jwt",
     "credential": $Issuer-Signed-JWT
 }
-</pre><a href="#section-6.1-4" class="pilcrow">¶</a>
+</pre><a href="#section-6.2-4" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-5">When the JWT format is used, the JWT <span class="bcp14">MUST</span> contain the parameters defined in the following table.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">When the JWT format is used, the JWT <span class="bcp14">MUST</span> contain the parameters defined in the following table.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
           <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
