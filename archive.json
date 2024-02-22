@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:44:15.381382+00:00",
+  "timestamp": "2024-02-22T00:44:42.541119+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -114,9 +114,17 @@
       "labels": [],
       "body": "> it would be good to avoid the term \"attestations\" because it is already used for a different purpose (in the IETF).\r\n\r\nCould it be \"status tokens\" or \"status assertions\"?",
       "createdAt": "2024-02-07T13:14:29Z",
-      "updatedAt": "2024-02-07T13:14:29Z",
+      "updatedAt": "2024-02-20T11:43:27Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "What about Status Evidence?\r\n\r\nThis would be close to the Wallet Trust Evidence we have for eIDAS",
+          "createdAt": "2024-02-20T11:43:26Z",
+          "updatedAt": "2024-02-20T11:43:26Z"
+        }
+      ]
     },
     {
       "number": 7,
