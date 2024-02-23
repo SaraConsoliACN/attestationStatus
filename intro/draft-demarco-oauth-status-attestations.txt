@@ -425,41 +425,38 @@ Table of Contents
 
                                   Table 1
 
-   +=======================+===========================+===============+
-   | JOSE Payload          | Description               | Reference     |
-   +=======================+===========================+===============+
-   | *iss*                 | Wallet identifier.        | [RFC9126],    |
-   |                       |                           | [RFC7519]     |
-   +-----------------------+---------------------------+---------------+
-   | *aud*                 | It MUST be set to         | [RFC9126],    |
-   |                       | the identifier of         | [RFC7519]     |
-   |                       | the Credential            |               |
-   |                       | Issuer.                   |               |
-   +-----------------------+---------------------------+---------------+
-   | *exp*                 | UNIX Timestamp with       | [RFC9126],    |
-   |                       | the expiration time       | [RFC7519]     |
-   |                       | of the JWT.               |               |
-   +-----------------------+---------------------------+---------------+
-   | *iat*                 | UNIX Timestamp with       | [RFC9126],    |
-   |                       | the time of JWT           | [RFC7519]     |
-   |                       | issuance.                 |               |
-   +-----------------------+---------------------------+---------------+
-   | *jti*                 | Unique identifier         | [RFC7519]     |
-   |                       | for the JWT.              | Section 4.1.7 |
-   +-----------------------+---------------------------+---------------+
-   | *credential_hash*     | It MUST contain the       | this          |
-   |                       | hash value of the         | specification |
-   |                       | Credential.               |               |
-   +-----------------------+---------------------------+---------------+
-   | *credential_hash_alg* | The hash value of a       | this          |
-   |                       | Digital Credential,       | specification |
-   |                       | derived by computing      |               |
-   |                       | the base64url             |               |
-   |                       | encoded hash of the       |               |
-   |                       | Digital Credential.       |               |
-   +-----------------------+---------------------------+---------------+
+   +=======================+==========================+===============+
+   | JOSE Payload          | Description              | Reference     |
+   +=======================+==========================+===============+
+   | *iss*                 | Wallet identifier.       | [RFC9126],    |
+   |                       |                          | [RFC7519]     |
+   +-----------------------+--------------------------+---------------+
+   | *aud*                 | It MUST be set to the    | [RFC9126],    |
+   |                       | identifier of the        | [RFC7519]     |
+   |                       | Credential Issuer.       |               |
+   +-----------------------+--------------------------+---------------+
+   | *exp*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | expiration time of the   | [RFC7519]     |
+   |                       | JWT.                     |               |
+   +-----------------------+--------------------------+---------------+
+   | *iat*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | time of JWT issuance.    | [RFC7519]     |
+   +-----------------------+--------------------------+---------------+
+   | *jti*                 | Unique identifier for    | [RFC7519]     |
+   |                       | the JWT.                 | Section 4.1.7 |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash*     | The hash value of the    | this          |
+   |                       | Credential.              | specification |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash_alg* | The Algorithm used of    | this          |
+   |                       | hashing the Digital      | specification |
+   |                       | Credential to which the  |               |
+   |                       | Status Attestation is    |               |
+   |                       | bound.  The value SHOULD |               |
+   |                       | be set to sha-256.       |               |
+   +-----------------------+--------------------------+---------------+
 
-                                  Table 2
+                                 Table 2
 
 7.  Status Attestation
 
@@ -512,41 +509,41 @@ Table of Contents
 
                                   Table 3
 
-    +=======================+========================+===============+
-    | JOSE Payload          | Description            | Reference     |
-    +=======================+========================+===============+
-    | *iss*                 | It MUST be set to the  | [RFC9126],    |
-    |                       | identifier of the      | [RFC7519]     |
-    |                       | Issuer.                |               |
-    +-----------------------+------------------------+---------------+
-    | *iat*                 | UNIX Timestamp with    | [RFC9126],    |
-    |                       | the time of the Status | [RFC7519]     |
-    |                       | Attestation issuance.  |               |
-    +-----------------------+------------------------+---------------+
-    | *exp*                 | UNIX Timestamp with    | [RFC9126],    |
-    |                       | the expiry time of the | [RFC7519]     |
-    |                       | Status Attestation.    |               |
-    +-----------------------+------------------------+---------------+
-    | *credential_hash*     | Hash value of the      | this          |
-    |                       | Digital Credential the | specification |
-    |                       | Status Attestation is  |               |
-    |                       | bound to.              |               |
-    +-----------------------+------------------------+---------------+
-    | *credential_hash_alg* | The Algorithm used of  | this          |
-    |                       | hashing the Digital    | specification |
-    |                       | Credential to which    |               |
-    |                       | the Status Attestation |               |
-    |                       | is bound.  The value   |               |
-    |                       | SHOULD be set to S256. |               |
-    +-----------------------+------------------------+---------------+
-    | *cnf*                 | JSON object containing | [RFC7800]     |
-    |                       | the cryptographic key  | Section 3.1   |
-    |                       | binding.  The cnf.jwk  |               |
-    |                       | value MUST match with  |               |
-    |                       | the one provided       |               |
-    |                       | within the related     |               |
-    |                       | Digital Credential.    |               |
-    +-----------------------+------------------------+---------------+
+   +=======================+==========================+===============+
+   | JOSE Payload          | Description              | Reference     |
+   +=======================+==========================+===============+
+   | *iss*                 | It MUST be set to the    | [RFC9126],    |
+   |                       | identifier of the        | [RFC7519]     |
+   |                       | Issuer.                  |               |
+   +-----------------------+--------------------------+---------------+
+   | *iat*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | time of the Status       | [RFC7519]     |
+   |                       | Attestation issuance.    |               |
+   +-----------------------+--------------------------+---------------+
+   | *exp*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | expiry time of the       | [RFC7519]     |
+   |                       | Status Attestation.      |               |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash*     | Hash value of the        | this          |
+   |                       | Digital Credential the   | specification |
+   |                       | Status Attestation is    |               |
+   |                       | bound to.                |               |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash_alg* | The Algorithm used of    | this          |
+   |                       | hashing the Digital      | specification |
+   |                       | Credential to which the  |               |
+   |                       | Status Attestation is    |               |
+   |                       | bound.  The value SHOULD |               |
+   |                       | be set to sha-256.       |               |
+   +-----------------------+--------------------------+---------------+
+   | *cnf*                 | JSON object containing   | [RFC7800]     |
+   |                       | the cryptographic key    | Section 3.1   |
+   |                       | binding.  The cnf.jwk    |               |
+   |                       | value MUST match with    |               |
+   |                       | the one provided within  |               |
+   |                       | the related Digital      |               |
+   |                       | Credential.              |               |
+   +-----------------------+--------------------------+---------------+
 
                                  Table 4
 

@@ -1661,14 +1661,14 @@ encoding, for better readability:<a href="#section-6.2-3" class="pilcrow">¶</a>
               <td class="text-left" rowspan="1" colspan="1">
                 <strong>credential_hash</strong>
 </td>
-              <td class="text-left" rowspan="1" colspan="1">It <span class="bcp14">MUST</span> contain the hash value of the Credential.</td>
+              <td class="text-left" rowspan="1" colspan="1">The hash value of the Credential.</td>
               <td class="text-left" rowspan="1" colspan="1">this specification</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">
                 <strong>credential_hash_alg</strong>
 </td>
-              <td class="text-left" rowspan="1" colspan="1">The hash value of a Digital Credential, derived by computing the base64url encoded hash of the Digital Credential.</td>
+              <td class="text-left" rowspan="1" colspan="1">The Algorithm used of hashing the Digital Credential to which the Status Attestation is bound. The value <span class="bcp14">SHOULD</span> be set to <code>sha-256</code>.</td>
               <td class="text-left" rowspan="1" colspan="1">this specification</td>
             </tr>
           </tbody>
@@ -1792,7 +1792,7 @@ Issuer checks the status of the Digital Credential and creates a Status Attestat
             <td class="text-left" rowspan="1" colspan="1">
               <strong>credential_hash_alg</strong>
 </td>
-            <td class="text-left" rowspan="1" colspan="1">The Algorithm used of hashing the Digital Credential to which the Status Attestation is bound. The value <span class="bcp14">SHOULD</span> be set to <code>S256</code>.</td>
+            <td class="text-left" rowspan="1" colspan="1">The Algorithm used of hashing the Digital Credential to which the Status Attestation is bound. The value <span class="bcp14">SHOULD</span> be set to <code>sha-256</code>.</td>
             <td class="text-left" rowspan="1" colspan="1">this specification</td>
           </tr>
           <tr>
