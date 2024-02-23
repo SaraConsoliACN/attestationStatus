@@ -17,12 +17,12 @@ Expires: 26 August 2024                                        Transmute
 Abstract
 
    Status Attestation is a signed object that demonstrates the validity
-   status of a digital credential.  These attestations are ephemeral and
-   periodically provided to holders, who can present these to Verifiers
-   along with the corresponding digital credentials.  The approach
-   outlined in this document makes the verifiers able to check the non-
-   revocation of a digital credential without requiring to query any
-   third-party entities.
+   status of a digital credential.  These attestations are periodically
+   provided to holders, who can present these to Verifiers along with
+   the corresponding digital credentials.  The approach outlined in this
+   document makes the verifiers able to check the non-revocation of a
+   digital credential without requiring to query any third-party
+   entities.
 
 About This Document
 
@@ -105,42 +105,17 @@ Table of Contents
 
 1.  Introduction
 
-   Status Attestation plays a crucial role in maintaining the integrity
-   and trustworthiness of digital credentials, since these serve as
-   proof that a particular digital credential, whether in JSON Web
-   Tokens (JWT) or CBOR Web Tokens (CWT) format, has not been revoked
-   and is still valid.
-
-   A digital credential may be presented to a verifier long after it has
-   been issued.  During this interval, the digital credential could
-   potentially be invalidated for various reasons (e.g., due to the
-   device lost or holder fraud).  To ensure the digital credential's
-   validity, the issuer provides a short-lived Status Attestation to the
-   holder.  This attestation is bound to the digital credential and can
-   be provided to a verifier, together with the digital credential, as
-   evidence of the digital credential's non-revocation status.
-
-   Status Attestations introduce a mechanism akin to OCSP Stapling in
-   the context of digital credential verification.  Just as OCSP
-   Stapling allows a server to present a time-stamped OCSP response to
-   prove the validity of its SSL/TLS certificates, thereby reducing the
-   need for clients to contact the Certificate Authority (CA), Status
-   Attestations enable a wallet instance to present a time-stamped
-   attestation issued by the Credential Issuer.  This attestation
-   confirms the non-revocation status of a digital credential without
-   requiring verifiers to query the issuer or any third-party entity
-   directly.  This approach enhances privacy, reduces latency, and
-   allows for offline verification scenarios, mirroring the benefits of
-   OCSP Stapling in the domain of digital credentials.
-
-   Status Attestation are essential in facilitating offline scenarios.
-   In these circumstances, both the wallet and the verifier work without
-   internet connectivity during the presentation phase; nonetheless,
-   Status Attestation provides a method to statically validate the
-   validity of the digital credentials, thus increasing the security of
-   the digital credential system.  By limiting the disclosure of status
-   information, Status Attestation strikes a balance between
-   scalability, security, and privacy.
+   Status Attestations ensure the integrity and trustworthiness of
+   digital credentials, whether in JSON Web Tokens (JWT) or CBOR Web
+   Tokens (CWT) format, certifying their validity and non-revocation
+   status.  They function similarly to OCSP Stapling, allowing wallet
+   instances to present time-stamped attestations from the Credential
+   Issuer.  The approach defined in this specification allows the
+   verification of credentials against any revocation, without direct
+   queries to the issuer, enhancing privacy, reducing latency, and
+   enabling offline verification.  Essential for offline scenarios,
+   Status Attestations validate digital credentials' validity, balancing
+   scalability, security, and privacy without internet connectivity.
 
    +-----------------+                             +-------------------+
    |                 | Requests Status Attestation |                   |
@@ -450,41 +425,40 @@ Table of Contents
 
                                   Table 1
 
-   +=======================+===========================+===============+
-   | JOSE Payload          | Description               | Reference     |
-   +=======================+===========================+===============+
-   | *iss*                 | Wallet identifier.        | [RFC9126],    |
-   |                       |                           | [RFC7519]     |
-   +-----------------------+---------------------------+---------------+
-   | *aud*                 | It MUST be set to         | [RFC9126],    |
-   |                       | the identifier of         | [RFC7519]     |
-   |                       | the Credential            |               |
-   |                       | Issuer.                   |               |
-   +-----------------------+---------------------------+---------------+
-   | *exp*                 | UNIX Timestamp with       | [RFC9126],    |
-   |                       | the expiration time       | [RFC7519]     |
-   |                       | of the JWT.               |               |
-   +-----------------------+---------------------------+---------------+
-   | *iat*                 | UNIX Timestamp with       | [RFC9126],    |
-   |                       | the time of JWT           | [RFC7519]     |
-   |                       | issuance.                 |               |
-   +-----------------------+---------------------------+---------------+
-   | *jti*                 | Unique identifier         | [RFC7519]     |
-   |                       | for the JWT.              | Section 4.1.7 |
-   +-----------------------+---------------------------+---------------+
-   | *credential_hash*     | It MUST contain the       | this          |
-   |                       | hash value of the         | specification |
-   |                       | Credential.               |               |
-   +-----------------------+---------------------------+---------------+
-   | *credential_hash_alg* | The hash value of a       | this          |
-   |                       | Digital Credential,       | specification |
-   |                       | derived by computing      |               |
-   |                       | the base64url             |               |
-   |                       | encoded hash of the       |               |
-   |                       | Digital Credential.       |               |
-   +-----------------------+---------------------------+---------------+
+   +=======================+==========================+===============+
+   | JOSE Payload          | Description              | Reference     |
+   +=======================+==========================+===============+
+   | *iss*                 | Wallet identifier.       | [RFC9126],    |
+   |                       |                          | [RFC7519]     |
+   +-----------------------+--------------------------+---------------+
+   | *aud*                 | It MUST be set to the    | [RFC9126],    |
+   |                       | identifier of the        | [RFC7519]     |
+   |                       | Credential Issuer.       |               |
+   +-----------------------+--------------------------+---------------+
+   | *exp*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | expiration time of the   | [RFC7519]     |
+   |                       | JWT.                     |               |
+   +-----------------------+--------------------------+---------------+
+   | *iat*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | time of JWT issuance.    | [RFC7519]     |
+   +-----------------------+--------------------------+---------------+
+   | *jti*                 | Unique identifier for    | [RFC7519]     |
+   |                       | the JWT.                 | Section 4.1.7 |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash*     | Hash value of the        | this          |
+   |                       | Digital Credential the   | specification |
+   |                       | Status Attestation is    |               |
+   |                       | bound to.                |               |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash_alg* | The Algorithm used of    | this          |
+   |                       | hashing the Digital      | specification |
+   |                       | Credential to which the  |               |
+   |                       | Status Attestation is    |               |
+   |                       | bound.  The value SHOULD |               |
+   |                       | be set to sha-256.       |               |
+   +-----------------------+--------------------------+---------------+
 
-                                  Table 2
+                                 Table 2
 
 7.  Status Attestation
 
@@ -537,41 +511,41 @@ Table of Contents
 
                                   Table 3
 
-    +=======================+========================+===============+
-    | JOSE Payload          | Description            | Reference     |
-    +=======================+========================+===============+
-    | *iss*                 | It MUST be set to the  | [RFC9126],    |
-    |                       | identifier of the      | [RFC7519]     |
-    |                       | Issuer.                |               |
-    +-----------------------+------------------------+---------------+
-    | *iat*                 | UNIX Timestamp with    | [RFC9126],    |
-    |                       | the time of the Status | [RFC7519]     |
-    |                       | Attestation issuance.  |               |
-    +-----------------------+------------------------+---------------+
-    | *exp*                 | UNIX Timestamp with    | [RFC9126],    |
-    |                       | the expiry time of the | [RFC7519]     |
-    |                       | Status Attestation.    |               |
-    +-----------------------+------------------------+---------------+
-    | *credential_hash*     | Hash value of the      | this          |
-    |                       | Digital Credential the | specification |
-    |                       | Status Attestation is  |               |
-    |                       | bound to.              |               |
-    +-----------------------+------------------------+---------------+
-    | *credential_hash_alg* | The Algorithm used of  | this          |
-    |                       | hashing the Digital    | specification |
-    |                       | Credential to which    |               |
-    |                       | the Status Attestation |               |
-    |                       | is bound.  The value   |               |
-    |                       | SHOULD be set to S256. |               |
-    +-----------------------+------------------------+---------------+
-    | *cnf*                 | JSON object containing | [RFC7800]     |
-    |                       | the cryptographic key  | Section 3.1   |
-    |                       | binding.  The cnf.jwk  |               |
-    |                       | value MUST match with  |               |
-    |                       | the one provided       |               |
-    |                       | within the related     |               |
-    |                       | Digital Credential.    |               |
-    +-----------------------+------------------------+---------------+
+   +=======================+==========================+===============+
+   | JOSE Payload          | Description              | Reference     |
+   +=======================+==========================+===============+
+   | *iss*                 | It MUST be set to the    | [RFC9126],    |
+   |                       | identifier of the        | [RFC7519]     |
+   |                       | Issuer.                  |               |
+   +-----------------------+--------------------------+---------------+
+   | *iat*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | time of the Status       | [RFC7519]     |
+   |                       | Attestation issuance.    |               |
+   +-----------------------+--------------------------+---------------+
+   | *exp*                 | UNIX Timestamp with the  | [RFC9126],    |
+   |                       | expiry time of the       | [RFC7519]     |
+   |                       | Status Attestation.      |               |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash*     | Hash value of the        | this          |
+   |                       | Digital Credential the   | specification |
+   |                       | Status Attestation is    |               |
+   |                       | bound to.                |               |
+   +-----------------------+--------------------------+---------------+
+   | *credential_hash_alg* | The Algorithm used of    | this          |
+   |                       | hashing the Digital      | specification |
+   |                       | Credential to which the  |               |
+   |                       | Status Attestation is    |               |
+   |                       | bound.  The value SHOULD |               |
+   |                       | be set to sha-256.       |               |
+   +-----------------------+--------------------------+---------------+
+   | *cnf*                 | JSON object containing   | [RFC7800]     |
+   |                       | the cryptographic key    | Section 3.1   |
+   |                       | binding.  The cnf.jwk    |               |
+   |                       | value MUST match with    |               |
+   |                       | the one provided within  |               |
+   |                       | the related Digital      |               |
+   |                       | Credential.              |               |
+   +-----------------------+--------------------------+---------------+
 
                                  Table 4
 
