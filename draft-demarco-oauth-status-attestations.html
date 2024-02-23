@@ -1862,7 +1862,7 @@ JSON member <code>status_attestation</code> set to a JSON Object containing the 
 member:<a href="#section-9.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-9.2-2.1">
-            <p id="section-9.2-2.1.1"><code>credential_hash_alg</code>. <span class="bcp14">REQUIRED</span>. The hash value of a Digital Credential is derived by computing the base64url encoded hash of the Digital Credential using one of the hash algorithms listed in the <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg">IANA - Named Information Hash Algorithm Registry</a>. Among the hash algorithms, <code>sha-256</code> is recommended and <span class="bcp14">SHOULD</span> be implemented by all systems.<a href="#section-9.2-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-9.2-2.1.1"><code>credential_hash_alg</code>. <span class="bcp14">REQUIRED</span>. The Algorithm used of hashing the Digital Credential to which the Status Attestation is bound, using one of the hash algorithms listed in the <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg">IANA - Named Information Hash Algorithm Registry</a>. Among the hash algorithms, <code>sha-256</code> is recommended and <span class="bcp14">SHOULD</span> be implemented by all systems.<a href="#section-9.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-9.2-3">The non-normative example of an unsecured payload of
