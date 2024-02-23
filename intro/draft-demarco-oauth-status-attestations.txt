@@ -445,8 +445,10 @@ Table of Contents
    | *jti*                 | Unique identifier for    | [RFC7519]     |
    |                       | the JWT.                 | Section 4.1.7 |
    +-----------------------+--------------------------+---------------+
-   | *credential_hash*     | The hash value of the    | this          |
-   |                       | Credential.              | specification |
+   | *credential_hash*     | Hash value of the        | this          |
+   |                       | Digital Credential the   | specification |
+   |                       | Status Attestation is    |               |
+   |                       | bound to.                |               |
    +-----------------------+--------------------------+---------------+
    | *credential_hash_alg* | The Algorithm used of    | this          |
    |                       | hashing the Digital      | specification |
