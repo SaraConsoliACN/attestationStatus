@@ -1187,6 +1187,11 @@ without requiring to query any third-party entities.<a href="#section-abstract-1
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-issued-digital-credentials" class="internal xref">Issued Digital Credentials</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1">
+                    <p id="section-toc.1-1.9.2.2.2.1.1"><a href="#section-9.2.1" class="auto internal xref">9.2.1</a>.  <a href="#name-credential-issuer-implement" class="internal xref">Credential Issuer Implementation Considerations</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1330,8 +1335,9 @@ and their validity status.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 <dt id="section-3-2.5">Verifier:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.6">
           <p id="section-3-2.6.1">Entity that relies on the validity of the Digital Credentials presented to it.
-This Entity, also known as a Relying Party, needs to verify the authenticity and
-validity of the Digital Credentials, including their revocation status, before accepting them.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+This Entity, also known as a Relying Party, verifies the authenticity and
+validity of the Digital Credentials, including their revocation status,
+before accepting them.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.7">Wallet Instance:</dt>
@@ -1843,6 +1849,7 @@ Content-Type: application/json
       <h2 id="name-credential-issuers-supporti">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-credential-issuers-supporti" class="section-name selfRef">Credential Issuers Supporting Status Attestations</a>
       </h2>
+<p id="section-9-1">This section outlines how Credential Issuers support Status Attestations, detailing the necessary metadata and practices to integrate into their systems.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <div id="credential-issuer-metadata">
 <section id="section-9.1">
         <h3 id="name-credential-issuer-metadata">
@@ -1876,12 +1883,7 @@ member:<a href="#section-9.2-1" class="pilcrow">¶</a></p>
         </ul>
 <p id="section-9.2-3">The non-normative example of an unsecured payload of
 an SD-JWT VC is shown below.<a href="#section-9.2-3" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-9.2-4.1">
-            <p id="section-9.2-4.1.1">TODO: alignments with the OAuth2 Status List schema and IANA registration.<a href="#section-9.2-4.1.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-<div class="alignLeft art-text artwork" id="section-9.2-5">
+<div class="alignLeft art-text artwork" id="section-9.2-4">
 <pre>
 {
  "vct": "https://credentials.example.com/identity_credential",
@@ -1901,11 +1903,19 @@ an SD-JWT VC is shown below.<a href="#section-9.2-3" class="pilcrow">¶</a></p>
  "is_over_65": true,
  "status": {
     "status_attestation": {
-        "credential_hash_alg": "S256",
+        "credential_hash_alg": "sha-256",
     }
  }
 }
-</pre><a href="#section-9.2-5" class="pilcrow">¶</a>
+</pre><a href="#section-9.2-4" class="pilcrow">¶</a>
+</div>
+<div id="credential-issuer-implementation-considerations">
+<section id="section-9.2.1">
+          <h4 id="name-credential-issuer-implement">
+<a href="#section-9.2.1" class="section-number selfRef">9.2.1. </a><a href="#name-credential-issuer-implement" class="section-name selfRef">Credential Issuer Implementation Considerations</a>
+          </h4>
+<p id="section-9.2.1-1">When the Digital Credential is issued, the Credential Issuer <span class="bcp14">SHOULD</span> calculate the hash value using the algorithm specified in <code>status.status_attestation.credential_hash_alg</code> and store this information in its database. This practice enhances efficiency by allowing the Credential Issuer to quickly compare the requested `credential_hash with the pre-calculated one, when processing Status Attestation requests made by Holders.<a href="#section-9.2.1-1" class="pilcrow">¶</a></p>
+</section>
 </div>
 </section>
 </div>
@@ -1929,7 +1939,7 @@ related Digital Credential.<a href="#section-10-1" class="pilcrow">¶</a></p>
           <p id="section-10-3.2.1">check the presence of <code>status.status_attestation</code> in the Digital Credential. If true, the Verifier <span class="bcp14">SHOULD</span>:<a href="#section-10-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-10-3.2.2.1">
-              <p id="section-10-3.2.2.1.1">produce the hash of the Digital Credential using the hashing algorithm defined in <code>status.status_attestation</code>;<a href="#section-10-3.2.2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-10-3.2.2.1.1">produce the hash of the Digital Credential using the hashing algorithm configured in <code>status.status_attestation.credential_hash_alg</code>;<a href="#section-10-3.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-10-3.2.2.2">
               <p id="section-10-3.2.2.2.1">decode all the Status Attestations provided in the presentation, by matching the JWS Header parameter <code>typ</code> set to <code>status-attestation+jwt</code> and looking for the <code>credential_hash</code> value that matches with the hash produced at the previous point;<a href="#section-10-3.2.2.2.1" class="pilcrow">¶</a></p>

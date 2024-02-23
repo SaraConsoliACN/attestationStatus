@@ -83,6 +83,7 @@ Table of Contents
    9.  Credential Issuers Supporting Status Attestations
      9.1.  Credential Issuer Metadata
      9.2.  Issued Digital Credentials
+       9.2.1.  Credential Issuer Implementation Considerations
    10. Presenting Status Attestations
    11. Security Considerations
    12. Privacy Considerations
@@ -191,9 +192,9 @@ Table of Contents
 
    Verifier:  Entity that relies on the validity of the Digital
       Credentials presented to it.  This Entity, also known as a Relying
-      Party, needs to verify the authenticity and validity of the
-      Digital Credentials, including their revocation status, before
-      accepting them.
+      Party, verifies the authenticity and validity of the Digital
+      Credentials, including their revocation status, before accepting
+      them.
 
    Wallet Instance:  The digital Wallet in control of a User, also known
       as Wallet or Holder.  It securely stores the User's Digital
@@ -593,6 +594,10 @@ Table of Contents
 
 9.  Credential Issuers Supporting Status Attestations
 
+   This section outlines how Credential Issuers support Status
+   Attestations, detailing the necessary metadata and practices to
+   integrate into their systems.
+
 9.1.  Credential Issuer Metadata
 
    The Credential Issuers that uses the Status Attestations MUST include
@@ -627,9 +632,6 @@ Table of Contents
    The non-normative example of an unsecured payload of an SD-JWT VC is
    shown below.
 
-      TODO: alignments with the OAuth2 Status List schema and IANA
-      registration.
-
    {
     "vct": "https://credentials.example.com/identity_credential",
     "given_name": "John",
@@ -648,10 +650,20 @@ Table of Contents
     "is_over_65": true,
     "status": {
        "status_attestation": {
-           "credential_hash_alg": "S256",
+           "credential_hash_alg": "sha-256",
        }
     }
    }
+
+9.2.1.  Credential Issuer Implementation Considerations
+
+   When the Digital Credential is issued, the Credential Issuer SHOULD
+   calculate the hash value using the algorithm specified in
+   status.status_attestation.credential_hash_alg and store this
+   information in its database.  This practice enhances efficiency by
+   allowing the Credential Issuer to quickly compare the requested
+   `credential_hash with the pre-calculated one, when processing Status
+   Attestation requests made by Holders.
 
 10.  Presenting Status Attestations
 
@@ -668,7 +680,8 @@ Table of Contents
       Credential.  If true, the Verifier SHOULD:
 
       -  produce the hash of the Digital Credential using the hashing
-         algorithm defined in status.status_attestation;
+         algorithm configured in
+         status.status_attestation.credential_hash_alg;
 
       -  decode all the Status Attestations provided in the
          presentation, by matching the JWS Header parameter typ set to
