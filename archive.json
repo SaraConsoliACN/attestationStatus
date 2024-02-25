@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T00:44:42.541119+00:00",
+  "timestamp": "2024-02-25T00:49:31.153956+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -55,7 +55,7 @@
       "id": "I_kwDOK4XJ0s5-J5yj",
       "title": "Credential jwt in the status attestation request",
       "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "fmarino-ipzs",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -64,8 +64,8 @@
       "labels": [],
       "body": "For privacy and security reasons, we should remove the credential jwt from the status attestation request. \nThe credential_pop value should be a unique identifier of the credential, for example the hash value of the credential.\nThe credential issuer is able to get the credential from the hash value, check the status and return the status attestation. ",
       "createdAt": "2024-02-03T15:11:07Z",
-      "updatedAt": "2024-02-13T13:36:53Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-23T17:47:38Z",
+      "closedAt": "2024-02-23T17:47:38Z",
       "comments": [
         {
           "author": "peppelinux",
@@ -167,15 +167,15 @@
       "id": "I_kwDOK4XJ0s5_NVbM",
       "title": "implementation requirement",
       "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "peppelinux",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "when the VCI issues a credential it must store an hash for the comparison when the status attestation request happen",
       "createdAt": "2024-02-14T12:01:09Z",
-      "updatedAt": "2024-02-14T12:01:09Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-23T17:47:38Z",
+      "closedAt": "2024-02-23T17:47:38Z",
       "comments": []
     },
     {
@@ -204,9 +204,65 @@
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
-      "body": "from \r\n```\r\nThese privacy considerations are integral to the design of Status Attestations and reflect a deliberate effort to balance security and privacy needs in the digital credential ecosystem. By adhering to these principles, Status Attestations contribute to a more secure and privacy-respecting digital world.\r\n````\r\nto\r\n```\r\nStatus Attestations are based on a privacy-by-design approach, reflecting a deliberate effort to balance security and privacy needs in the digital credential ecosystem.\r\n```\r\n\r\n_Originally posted by @fmarino-ipzs in https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/9#discussion_r1489361569_\r\n            ",
+      "body": "from \r\n```\r\nThese privacy considerations are integral to the design of Status Attestations \r\nand reflect a deliberate effort to balance security and privacy needs in the \r\ndigital credential ecosystem. By adhering to these principles, Status Attestations \r\ncontribute to a more secure and privacy-respecting digital world.\r\n````\r\nto\r\n```\r\nStatus Attestations are based on a privacy-by-design approach, reflecting a \r\ndeliberate effort to balance security and privacy needs in the digital credential ecosystem.\r\n```\r\n\r\n_Originally posted by @fmarino-ipzs in https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/9#discussion_r1489361569_\r\n            ",
       "createdAt": "2024-02-14T14:08:13Z",
-      "updatedAt": "2024-02-14T14:08:13Z",
+      "updatedAt": "2024-02-23T11:58:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOK4XJ0s6AMWMS",
+      "title": "IANA named hash registry, and make sha-256 mandatory to implement.",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/16",
+      "state": "CLOSED",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "lets use the IANA named hash registry, and make sha-256 mandatory to implement.\r\n\r\nhttps://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg\r\n\r\nAlternatively, we can use the cose registry which includes hash algorithms:\r\n\r\nhttps://www.iana.org/assignments/cose/cose.xhtml#algorithms\r\n\r\nthe \"COSE\" style for this kind of thing would be:\r\n\r\n```\r\ncredential_hash: [alg, hash]\r\n```\r\n\r\n_Originally posted by @OR13 in https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/6#discussion_r1487916459_\r\n            ",
+      "createdAt": "2024-02-23T09:40:49Z",
+      "updatedAt": "2024-02-23T17:47:38Z",
+      "closedAt": "2024-02-23T17:47:37Z",
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "see also https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/6#discussion_r1487918496",
+          "createdAt": "2024-02-23T09:42:19Z",
+          "updatedAt": "2024-02-23T09:42:19Z"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOK4XJ0s6AQ42s",
+      "title": "credential_pop kid",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/19",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We should generalize the key identifier by adding:\r\n\r\n- jwk\r\n- x5c\r\n\r\nOnly one of them MUST be used. ",
+      "createdAt": "2024-02-23T22:39:25Z",
+      "updatedAt": "2024-02-23T22:39:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOK4XJ0s6ARKN9",
+      "title": "credential_pop typ",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/20",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The credential_pop is a JWT. I would consider `typ` as OPTIONAL and value it with `jwt`.\r\nIf omitted by default it is assumed to be `jwt`.",
+      "createdAt": "2024-02-24T00:16:16Z",
+      "updatedAt": "2024-02-24T00:16:17Z",
       "closedAt": null,
       "comments": []
     }
@@ -451,25 +507,35 @@
       "id": "PR_kwDOK4XJ0s5msEjT",
       "title": "fix: credential hash in the credential_pop",
       "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/6",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "fmarino-ipzs",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR closes #3 \r\n",
       "createdAt": "2024-02-12T22:44:00Z",
-      "updatedAt": "2024-02-13T16:47:05Z",
+      "updatedAt": "2024-02-23T12:18:39Z",
       "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
-      "baseRefName": "main",
-      "baseRefOid": "650bb023e094b022588e6327cdce8c9c213ac441",
+      "baseRefName": "dev",
+      "baseRefOid": "673a8e16ce50cc4ef409721c70279dc87db80446",
       "headRepository": "fmarino-ipzs/draft-demarco-oauth-status-attestations",
       "headRefName": "credential-pop",
-      "headRefOid": "531587031a12a1ff53fc1f28eb563550f578f537",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "71f5b3aea48af90608f764dbd8cd4d24ec4a95ef",
+      "closedAt": "2024-02-23T12:18:39Z",
+      "mergedAt": "2024-02-23T12:18:39Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "6e5fae6800ead1fc1a49cf80de9327a74a3a2fb9"
+      },
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "I merge on another branch to continue working on this PR and then I reopen the PR",
+          "createdAt": "2024-02-23T12:11:39Z",
+          "updatedAt": "2024-02-23T12:11:39Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOK4XJ0s5v2SmY",
@@ -701,6 +767,226 @@
               "body": "I would make it REQUIRED since I love thing explicit. If a day SHA-256 would be vulnerable and another specification woudl extend this one bringin an updated set of algs, the implementation would then always specify the alg making this aspect not ambiguous",
               "createdAt": "2024-02-13T16:47:04Z",
               "updatedAt": "2024-02-13T16:47:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xHNwW",
+          "commit": {
+            "abbreviatedOid": "5315870"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T09:39:22Z",
+          "updatedAt": "2024-02-23T09:39:23Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "@OR13 I have asked to remove the credential format, since we give only the credential hash without disclosing any information about the credential",
+              "createdAt": "2024-02-23T09:39:22Z",
+              "updatedAt": "2024-02-23T09:39:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xHO5N",
+          "commit": {
+            "abbreviatedOid": "5315870"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T09:41:59Z",
+          "updatedAt": "2024-02-23T09:41:59Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "@OR13 I moved your comment in a [separate issue](https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/16), to unblock this PR related to the hash \r\n\r\nA PR wil be create asap, when this PR will be merged\r\n\r\n",
+              "createdAt": "2024-02-23T09:41:59Z",
+              "updatedAt": "2024-02-23T09:41:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xHPMu",
+          "commit": {
+            "abbreviatedOid": "5315870"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T09:42:39Z",
+          "updatedAt": "2024-02-23T09:42:39Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "moved in the issue https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/16",
+              "createdAt": "2024-02-23T09:42:39Z",
+              "updatedAt": "2024-02-23T09:42:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xH_BU",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:36:10Z",
+          "updatedAt": "2024-02-23T11:36:10Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\n| **credential_hash_alg** |  The hash value of a Digital Credential is derived by computing the base64url encoded hash of the Digital Credential. | this specification |\r\n```",
+              "createdAt": "2024-02-23T11:36:10Z",
+              "updatedAt": "2024-02-23T11:40:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xH_Gg",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:36:24Z",
+          "updatedAt": "2024-02-23T11:36:24Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "@OR13 WDYT?^",
+              "createdAt": "2024-02-23T11:36:24Z",
+              "updatedAt": "2024-02-23T11:36:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xH_PA",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:36:47Z",
+          "updatedAt": "2024-02-23T11:36:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThe request MUST contain the base64url hash value of the Digital Credential, for which the Status Attestation\r\n```",
+              "createdAt": "2024-02-23T11:36:47Z",
+              "updatedAt": "2024-02-23T11:41:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xH_ch",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:37:19Z",
+          "updatedAt": "2024-02-23T11:37:19Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "See my change suggestion in the form of comment",
+              "createdAt": "2024-02-23T11:37:19Z",
+              "updatedAt": "2024-02-23T11:37:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xIAQC",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:39:34Z",
+          "updatedAt": "2024-02-23T11:39:35Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\r\n- `credential_hash_alg_supported`. REQUIRED. The supported Algorithm used by the Wallet Instance to hash the Digital Credential for which the Status Attestation is requested,  using one of the hash algorithms listed in the [IANA - Named Information Hash Algorithm Registry](https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg).\r\n```",
+              "createdAt": "2024-02-23T11:39:34Z",
+              "updatedAt": "2024-02-23T11:39:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xIAti",
+          "commit": {
+            "abbreviatedOid": "253579b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:40:45Z",
+          "updatedAt": "2024-02-23T11:40:45Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\n- `credential_hash_alg`. REQUIRED.  The hash value of a Digital Credential is derived by computing the base64url encoded hash of the Digital Credential using one of the hash algorithms listed in the [IANA - Named Information Hash Algorithm Registry](https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg). Among the hash algorithms, `sha-256` is recommended and SHOULD be implemented by all systems.\r\n```",
+              "createdAt": "2024-02-23T11:40:45Z",
+              "updatedAt": "2024-02-23T11:41:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xIGwK",
+          "commit": {
+            "abbreviatedOid": "2db2c8b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:57:26Z",
+          "updatedAt": "2024-02-23T11:57:26Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\n| **credential_hash_alg** |  The hash value of a Digital Credential, derived by computing the base64url encoded hash of the Digital Credential. | this specification |\r\n```",
+              "createdAt": "2024-02-23T11:57:26Z",
+              "updatedAt": "2024-02-23T11:57:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xIG7g",
+          "commit": {
+            "abbreviatedOid": "2db2c8b"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-23T11:57:54Z",
+          "updatedAt": "2024-02-23T11:57:54Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\n- `credential_hash_alg`. REQUIRED. The hash value of a Digital Credential is derived by computing the base64url encoded hash of the Digital Credential using one of the hash algorithms listed in the [IANA - Named Information Hash Algorithm Registry](https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg). Among the hash algorithms, `sha-256` is recommended and SHOULD be implemented by all systems.\r\n```",
+              "createdAt": "2024-02-23T11:57:54Z",
+              "updatedAt": "2024-02-23T11:57:54Z"
             }
           ]
         }
@@ -1234,9 +1520,9 @@
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
-      "body": "this PR resolves the issue https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/11",
+      "body": "this PR closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/11",
       "createdAt": "2024-02-13T17:22:02Z",
-      "updatedAt": "2024-02-14T14:06:12Z",
+      "updatedAt": "2024-02-23T21:39:17Z",
       "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "baseRefName": "main",
       "baseRefOid": "650bb023e094b022588e6327cdce8c9c213ac441",
@@ -1247,7 +1533,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "@fmarino-ipzs This pull request addresses a limitation of the current specification. It currently only works with digital credentials that contain holder key binding.\r\n",
+          "createdAt": "2024-02-23T21:39:16Z",
+          "updatedAt": "2024-02-23T21:39:16Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOK4XJ0s5wER-Q",
@@ -1301,6 +1595,116 @@
               "updatedAt": "2024-02-14T14:05:54Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOK4XJ0s5nv-QK",
+      "title": "Credential hash and VCI metadata paramenter",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/17",
+      "state": "MERGED",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "this PR continues https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/6, it also:\r\n\r\n- closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/16\r\n- closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/3\r\n- closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/13",
+      "createdAt": "2024-02-23T12:19:48Z",
+      "updatedAt": "2024-02-23T17:47:37Z",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "673a8e16ce50cc4ef409721c70279dc87db80446",
+      "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "headRefName": "dev",
+      "headRefOid": "ce0d664ca0b4ca1a0d1500335f6be46b415a96fd",
+      "closedAt": "2024-02-23T17:47:36Z",
+      "mergedAt": "2024-02-23T17:47:36Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "3278cd2382cdf1ffb29d02dccb9cfa3e1dece931"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5xJmAO",
+          "commit": {
+            "abbreviatedOid": "ce0d664"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-23T15:09:28Z",
+          "updatedAt": "2024-02-23T15:09:28Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xJ-w0",
+          "commit": {
+            "abbreviatedOid": "ce0d664"
+          },
+          "author": "fmarino-ipzs",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-23T15:59:09Z",
+          "updatedAt": "2024-02-23T15:59:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOK4XJ0s5nyv-E",
+      "title": "editorial: intro, less word, same information",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/18",
+      "state": "MERGED",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Rereading I realized how much the introductory text had swollen with thoughts, words and considerations.\r\n\r\nI have compressed the same information into a fifth of the previous text.",
+      "createdAt": "2024-02-23T20:54:10Z",
+      "updatedAt": "2024-02-23T22:39:50Z",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "3278cd2382cdf1ffb29d02dccb9cfa3e1dece931",
+      "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "headRefName": "intro",
+      "headRefOid": "d420251e76f6fd3a2677a70f48cd1c3a6ccbfe60",
+      "closedAt": "2024-02-23T22:39:49Z",
+      "mergedAt": "2024-02-23T22:39:49Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "516968a7b22fee30185ca758370b60c19e1efbb6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5xL7jK",
+          "commit": {
+            "abbreviatedOid": "bc5af09"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-23T21:21:18Z",
+          "updatedAt": "2024-02-23T21:21:18Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5xMDRG",
+          "commit": {
+            "abbreviatedOid": "bc5af09"
+          },
+          "author": "fmarino-ipzs",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-23T21:40:42Z",
+          "updatedAt": "2024-02-23T21:40:42Z",
+          "comments": []
         }
       ]
     }
