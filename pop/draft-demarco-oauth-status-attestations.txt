@@ -5,10 +5,10 @@
 Network Working Group                                        G. D. Marco
 Internet-Draft               Dipartimento per la trasformazione digitale
 Intended status: Informational                                 O. Steele
-Expires: 17 August 2024                                        Transmute
+Expires: 31 August 2024                                        Transmute
                                                                F. Marino
                                 Istituto Poligrafico e Zecca dello Stato
-                                                        14 February 2024
+                                                        28 February 2024
 
 
                        OAuth Status Attestations
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2024.
+   This Internet-Draft will expire on 31 August 2024.
 
 Copyright Notice
 
@@ -294,13 +294,13 @@ Table of Contents
    demonstration through a cryptographic operation (e.g., signing a
    challenge or a token) is to ensure that the entity in possession of
    the credential can execute actions exclusively reserved for the
-   legitimate owner.  The dual-layered approach of requiring both
+   legitimate subject.  The dual-layered approach of requiring both
    possession of the credential and control over the corresponding
    private key indeed reinforces the security and integrity of the
    status attestation process.  It also ensures that the entity
    requesting a status attestation is indeed the same entity to which
    the credential was originally issued, affirming the authenticity and
-   rightful ownership of the credential.
+   rightful possession of the credential.
 
 7.  Status Attestation Request
 
