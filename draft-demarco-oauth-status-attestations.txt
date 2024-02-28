@@ -5,10 +5,10 @@
 Network Working Group                                        G. D. Marco
 Internet-Draft               Dipartimento per la trasformazione digitale
 Intended status: Informational                                 O. Steele
-Expires: 26 August 2024                                        Transmute
+Expires: 31 August 2024                                        Transmute
                                                                F. Marino
                                 Istituto Poligrafico e Zecca dello Stato
-                                                        23 February 2024
+                                                        28 February 2024
 
 
                        OAuth Status Attestations
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 August 2024.
+   This Internet-Draft will expire on 31 August 2024.
 
 Copyright Notice
 
@@ -75,30 +75,31 @@ Table of Contents
    3.  Terminology
    4.  Rationale
    5.  Requirements
-   6.  Status Attestation Request
-     6.1.  Status Attestation Request Errors
-     6.2.  Digital Credential Proof of Possession
-   7.  Status Attestation
-   8.  Status Attestation Response
-   9.  Credential Issuers Supporting Status Attestations
-     9.1.  Credential Issuer Metadata
-     9.2.  Issued Digital Credentials
-       9.2.1.  Credential Issuer Implementation Considerations
-   10. Presenting Status Attestations
-   11. Security Considerations
-   12. Privacy Considerations
-     12.1.  Privacy Consideration: Status Attestation Request Opacity
-     12.2.  Privacy Consideration: Opacity of Status Attestation
+   6.  Proof of Possession of a Credential
+   7.  Status Attestation Request
+     7.1.  Status Attestation Request Errors
+     7.2.  Digital Credential Proof of Possession
+   8.  Status Attestation
+   9.  Status Attestation Response
+   10. Credential Issuers Supporting Status Attestations
+     10.1.  Credential Issuer Metadata
+     10.2.  Issued Digital Credentials
+       10.2.1.  Credential Issuer Implementation Considerations
+   11. Presenting Status Attestations
+   12. Security Considerations
+   13. Privacy Considerations
+     13.1.  Privacy Consideration: Status Attestation Request Opacity
+     13.2.  Privacy Consideration: Opacity of Status Attestation
             Content
-     12.3.  Unlinkability and Reusability of Status Attestations
-     12.4.  Untrackability by Digital Credential Issuers and the
+     13.3.  Unlinkability and Reusability of Status Attestations
+     13.4.  Untrackability by Digital Credential Issuers and the
             "Phone Home" Problem
-     12.5.  Minimization of Data Exposure
-     12.6.  Resistance to Enumeration Attacks
-   13. IANA Considerations
-     13.1.  JSON Web Token Claims Registration
-     13.2.  Media Type Registration
-   14. Normative References
+     13.5.  Minimization of Data Exposure
+     13.6.  Resistance to Enumeration Attacks
+   14. IANA Considerations
+     14.1.  JSON Web Token Claims Registration
+     14.2.  Media Type Registration
+   15. Normative References
    Appendix A.  Acknowledgments
    Appendix B.  Document History
    Authors' Addresses
@@ -283,7 +284,42 @@ Table of Contents
    attributes and requirements defined in this specification are
    satisfied, even using equivalent names or values.
 
-6.  Status Attestation Request
+6.  Proof of Possession of a Credential
+
+   The concept of Proof of Possession (PoP) of a Credential within the
+   framework of the Status Attestation specification encompasses a
+   broader perspective than merely possessing the digital bytes of the
+   Credential.  It involves demonstrating rightful control or ownership
+   over the Credential, which can manifest in various forms depending on
+   the technology employed and the nature of the digital Credential
+   itself.  For instance, a Credential could be presented visually (de-
+   visu) with a personal portrait serving as a binding element.
+
+   While this specification does not prescribe any additional methods
+   for the proof of possession of the Credential, it aims to offer
+   guidance for concrete implementations utilizing common proof of
+   possession mechanisms.  This includes, but is not limited to:
+
+   1.  Having the digital representation of the credential (the bytes).
+
+   2.  Controlling a private key that corresponds to a public key
+       associated with the Credential, often indicated within the
+       Credential's cnf (confirmation) claim or through a similar
+       mechanism.
+
+   The essence of requiring control over the private key and its
+   demonstration through a cryptographic operation (e.g., signing a
+   challenge or a token) is to ensure that the entity in possession of
+   the Credential can execute actions exclusively reserved for the
+   legitimate subject.  The dual-layered approach of requiring both
+   possession of the Credential and control over the corresponding
+   private key indeed reinforces the security and integrity of the
+   status attestation process.  It also ensures that the entity
+   requesting a Status Attestation is indeed the same entity to which
+   the Credential was originally issued, affirming the authenticity and
+   rightful possession of the Credential.
+
+7.  Status Attestation Request
 
    The Credential Issuer provides the Wallet Instance with a Status
    Attestation, which is bound to a Digital Credential.  This allows the
@@ -341,7 +377,7 @@ Table of Contents
    The technical and details about the credential_pop object are defined
    in the next section.
 
-6.1.  Status Attestation Request Errors
+7.1.  Status Attestation Request Errors
 
    In cases where a Status Attestation request is made for a Digital
    Credential that does not exist, has expired, been revoked, or is in
@@ -370,7 +406,7 @@ Table of Contents
     "error_description": "The signature of credential_pop JWT is not valid"
   }
 
-6.2.  Digital Credential Proof of Possession
+7.2.  Digital Credential Proof of Possession
 
    The Wallet Instance that holds a Digital Credential, when requests a
    Status Attestation, MUST demonstrate the proof of possession of the
@@ -460,7 +496,7 @@ Table of Contents
 
                                  Table 2
 
-7.  Status Attestation
+8.  Status Attestation
 
    When a Status Attestation is requested to a Credential Issuer, the
    Issuer checks the status of the Digital Credential and creates a
@@ -549,7 +585,7 @@ Table of Contents
 
                                  Table 4
 
-8.  Status Attestation Response
+9.  Status Attestation Response
 
    If the Status Attestation is requested for a non-existent, expired,
    revoked or invalid Digital Credential, the Credential Issuer MUST
@@ -566,13 +602,13 @@ Table of Contents
        "status_attestation": "eyJhbGciOiJFUzI1Ni ...",
    }
 
-9.  Credential Issuers Supporting Status Attestations
+10.  Credential Issuers Supporting Status Attestations
 
    This section outlines how Credential Issuers support Status
    Attestations, detailing the necessary metadata and practices to
    integrate into their systems.
 
-9.1.  Credential Issuer Metadata
+10.1.  Credential Issuer Metadata
 
    The Credential Issuers that uses the Status Attestations MUST include
    in their OpenID4VCI [@!OpenID.VCI] metadata the claims:
@@ -588,7 +624,7 @@ Table of Contents
       Registry (https://www.iana.org/assignments/named-information/
       named-information.xhtml#hash-alg).
 
-9.2.  Issued Digital Credentials
+10.2.  Issued Digital Credentials
 
    The Credential Issuers that uses the Status Attestations SHOULD
    include in the issued Digital Credentials the object status with the
@@ -629,7 +665,7 @@ Table of Contents
     }
    }
 
-9.2.1.  Credential Issuer Implementation Considerations
+10.2.1.  Credential Issuer Implementation Considerations
 
    When the Digital Credential is issued, the Credential Issuer SHOULD
    calculate the hash value using the algorithm specified in
@@ -639,7 +675,7 @@ Table of Contents
    `credential_hash with the pre-calculated one, when processing Status
    Attestation requests made by Holders.
 
-10.  Presenting Status Attestations
+11.  Presenting Status Attestations
 
    The Wallet Instance that provides the Status Attestations using
    [@OpenID4VP], SHOULD include in the vp_token JSON array, as defined
@@ -679,18 +715,18 @@ Table of Contents
    Credential, allowing Verifiers to examine and make educated
    conclusions based on a variety of scenarios.
 
-11.  Security Considerations
+12.  Security Considerations
 
    TODO Security
 
-12.  Privacy Considerations
+13.  Privacy Considerations
 
    In the design and implementation of Status Attestations, particular
    attention has been paid to privacy considerations to ensure that the
    system is respectful of user privacy and compliant with relevant
    regulations.
 
-12.1.  Privacy Consideration: Status Attestation Request Opacity
+13.1.  Privacy Consideration: Status Attestation Request Opacity
 
    The request for a status attestation does not transmit the digital
    credential for which the status is being attested.  Instead, it
@@ -709,7 +745,7 @@ Table of Contents
    process from being used to collect information about digital
    credentials or their holders through deceptive requests.
 
-12.2.  Privacy Consideration: Opacity of Status Attestation Content
+13.2.  Privacy Consideration: Opacity of Status Attestation Content
 
    An important privacy consideration is how the status attestation is
    structured to ensure it does not reveal any information about the
@@ -724,7 +760,7 @@ Table of Contents
    applied in various verification situations without risking the
    privacy of the people involved.
 
-12.3.  Unlinkability and Reusability of Status Attestations
+13.3.  Unlinkability and Reusability of Status Attestations
 
    Status Attestations are designed to uphold privacy by allowing
    verifiers to operate independently, without the need for interaction
@@ -748,7 +784,7 @@ Table of Contents
    entities, without compromising the privacy or security of the
    credential holder.
 
-12.4.  Untrackability by Digital Credential Issuers and the "Phone Home"
+13.4.  Untrackability by Digital Credential Issuers and the "Phone Home"
        Problem
 
    A fundamental aspect of the privacy-preserving attributes of Status
@@ -767,7 +803,7 @@ Table of Contents
    from tracking verification activities, further reinforcing the
    system's dedication to protecting user privacy.
 
-12.5.  Minimization of Data Exposure
+13.5.  Minimization of Data Exposure
 
    The Status Attestations are designed around the data minimization
    principle.  Data minimization ensures that only the necessary
@@ -775,7 +811,7 @@ Table of Contents
    status of the digital credential.  This minimizes the exposure of
    potentially sensitive data.
 
-12.6.  Resistance to Enumeration Attacks
+13.6.  Resistance to Enumeration Attacks
 
    The design of Status Attestations incorporates measures to resist
    enumeration attacks, where an adversary attempts to gather
@@ -792,9 +828,9 @@ Table of Contents
    these principles, Status Attestations contribute to a more secure and
    privacy-respecting digital world.
 
-13.  IANA Considerations
+14.  IANA Considerations
 
-13.1.  JSON Web Token Claims Registration
+14.1.  JSON Web Token Claims Registration
 
    This specification requests registration of the following Claims in
    the IANA "JSON Web Token Claims" registry [@IANA.JWT] established by
@@ -846,7 +882,7 @@ Table of Contents
    *  Specification Document(s): [[ (#status-attestation) of this
       specification ]]
 
-13.2.  Media Type Registration
+14.2.  Media Type Registration
 
    This section requests registration of the following media types
    [@RFC2046] in the "Media Types" registry [@IANA.MediaTypes] in the
@@ -942,7 +978,7 @@ Table of Contents
 
    *  Provisional registration?  No
 
-14.  Normative References
+15.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
