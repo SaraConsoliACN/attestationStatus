@@ -788,7 +788,7 @@ Table of Contents
 
    Status Attestations are based on a privacy-by-design approach,
    reflecting a deliberate effort to balance security and privacy needs
-   in the digital Credential ecosystem.
+   in the Digital Credential ecosystem.
 
 13.  IANA Considerations
 
