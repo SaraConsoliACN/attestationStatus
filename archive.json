@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-29T00:44:35.095996+00:00",
+  "timestamp": "2024-03-03T00:48:15.910262+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "out-of-scope",
+      "description": "",
+      "color": "E6C656"
     }
   ],
   "issues": [
@@ -114,7 +119,7 @@
       "labels": [],
       "body": "> it would be good to avoid the term \"attestations\" because it is already used for a different purpose (in the IETF).\r\n\r\nCould it be \"status tokens\" or \"status assertions\"?",
       "createdAt": "2024-02-07T13:14:29Z",
-      "updatedAt": "2024-02-28T17:46:09Z",
+      "updatedAt": "2024-02-29T09:52:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -137,6 +142,13 @@
           "body": "\"status assertions\" seems reasonably good/appropriate here. The term \"attestation\" is just quite popular right now and carries some assumptions/connotations due to wide use in a different context. The term \"assertion\" is overloaded too (as are most terms) but less problematically so. And I think \"assertion\" does nicely convey the intent. ",
           "createdAt": "2024-02-28T17:46:07Z",
           "updatedAt": "2024-02-28T17:46:07Z"
+        },
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "I suddenly realized that \"status $something\" misses the subject, the name would therefore be \"Digital Credential Status Assertions\"\r\n\r\nThis specification excludes its use with traditional OAuth 2.0/OIDC tokens. While the OAuth Status List shares some similarities, the OAuth 2.0 Introspection endpoint is deemed sufficient for such tokens due to several key differences:\r\n\r\n- **Interaction**: Parties interact differently in the context of traditional tokens compared to this specification.\r\n- **Privacy**: Distinct privacy requirements apply to each scenario.\r\n- **Offline usage**: Offline use cases, which necessitate this specification, are not a requirement for legacy infrastructures utilizing traditional tokens.",
+          "createdAt": "2024-02-29T09:52:21Z",
+          "updatedAt": "2024-02-29T09:52:33Z"
         }
       ]
     },
@@ -314,11 +326,12 @@
       "assignees": [],
       "labels": [
         "enhancement",
-        "wontfix"
+        "wontfix",
+        "out-of-scope"
       ],
       "body": "In the current implementation of the Status Attestation process, there is a need to introduce a mechanism that allows verifiers to specify how recent (in minutes) a Status Attestation needs to be. This requirement stems from scenarios where the verifier of a digital credential necessitates the Status Attestation to be exceptionally fresh to ensure the highest level of accuracy and security.\r\n\r\nTo accommodate this, we propose the development of a feature within the Status Attestation request protocol that enables verifiers to indicate a maximum age (N minutes) for the Status Attestation. This will ensure that the attestation provided is no older than the specified timeframe, meeting the verifier's requirements for freshness.\r\n\r\nThis feature necessitates the Wallet Instance to have an active internet connection to obtain the most up-to-date Status Attestation from the Credential Issuer, as per the verifier's request. \r\n\r\nThis information should be statically provided, per credential type, within the presentation request or within the presentation definition in the verifier's metadata.",
       "createdAt": "2024-02-28T16:21:03Z",
-      "updatedAt": "2024-02-28T20:48:48Z",
+      "updatedAt": "2024-02-29T09:35:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -327,6 +340,30 @@
           "body": "This is out of scope for this draft, just an issue for our awareness related to RP's requirements and claims",
           "createdAt": "2024-02-28T20:47:53Z",
           "updatedAt": "2024-02-28T20:47:53Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOK4XJ0s6AyvFE",
+      "title": "aud parameter in credential_pop",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/23",
+      "state": "OPEN",
+      "author": "fmarino-ipzs",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "`aud` parameter should be set to the endpoint at which the credential_pop is used. ",
+      "createdAt": "2024-02-29T09:19:33Z",
+      "updatedAt": "2024-02-29T09:43:16Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "body": "Already there\r\nhttps://github.com/peppelinux/draft-demarco-oauth-status-attestations/blob/main/draft-demarco-oauth-status-attestations.md?plain=1#L316",
+          "createdAt": "2024-02-29T09:34:29Z",
+          "updatedAt": "2024-02-29T09:34:29Z"
         }
       ]
     }
@@ -1929,6 +1966,46 @@
           "body": "",
           "createdAt": "2024-02-28T20:26:02Z",
           "updatedAt": "2024-02-28T20:26:02Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOK4XJ0s5oRZfo",
+      "title": "fix: aud normative value",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/24",
+      "state": "OPEN",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/23",
+      "createdAt": "2024-02-29T09:46:30Z",
+      "updatedAt": "2024-02-29T09:48:19Z",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "d06f46d4bb51b6bbbea052915bcaf6a8b57354bd",
+      "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "headRefName": "aud",
+      "headRefOid": "3fb3294c9be1661a5af35dc61abcc1796d34b951",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5xwCrg",
+          "commit": {
+            "abbreviatedOid": "3fb3294"
+          },
+          "author": "fmarino-ipzs",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T09:48:19Z",
+          "updatedAt": "2024-02-29T09:48:19Z",
           "comments": []
         }
       ]
