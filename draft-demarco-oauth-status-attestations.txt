@@ -5,10 +5,10 @@
 Network Working Group                                        G. D. Marco
 Internet-Draft               Dipartimento per la trasformazione digitale
 Intended status: Informational                                 O. Steele
-Expires: 31 August 2024                                        Transmute
+Expires: 5 September 2024                                      Transmute
                                                                F. Marino
                                 Istituto Poligrafico e Zecca dello Stato
-                                                        28 February 2024
+                                                            4 March 2024
 
 
                        OAuth Status Attestations
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 
@@ -467,9 +467,11 @@ Table of Contents
    | *iss*                 | Wallet identifier.       | [RFC9126],    |
    |                       |                          | [RFC7519]     |
    +-----------------------+--------------------------+---------------+
-   | *aud*                 | It MUST be set to the    | [RFC9126],    |
-   |                       | identifier of the        | [RFC7519]     |
-   |                       | Credential Issuer.       |               |
+   | *aud*                 | It MUST be set with the  | [RFC9126],    |
+   |                       | Credential Issuer Status | [RFC7519]     |
+   |                       | Attestation endpoint URL |               |
+   |                       | as value that identify   |               |
+   |                       | the intended audience    |               |
    +-----------------------+--------------------------+---------------+
    | *exp*                 | UNIX Timestamp with the  | [RFC9126],    |
    |                       | expiration time of the   | [RFC7519]     |
