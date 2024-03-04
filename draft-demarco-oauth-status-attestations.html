@@ -1835,11 +1835,10 @@ Issuer checks the status of the Digital Credential and creates a Status Attestat
       </h2>
 <p id="section-9-1">If the Status Attestation is requested for a non-existent, expired, revoked or invalid Digital Credential, the
 Credential Issuer <span class="bcp14">MUST</span> respond with an HTTP Response with the status code set to 404.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">If the Digital Credential is valid, the Credential Issuer then returns the Status Attestation to the Wallet Instance,
-as in the following non-normative example.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-2">If the Digital Credential is valid, the Credential Issuer <span class="bcp14">MUST</span> return an HTTP status code of 201 (Created), with the content type set to <code>application/json</code>. The response <span class="bcp14">MUST</span> include a JSON object with a member named <code>status_attestation</code>, which contains the Status Attestation for the Wallet Instance, as illustrated in the following non-normative example:<a href="#section-9-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-9-3">
 <pre>
-HTTP/1.1 201 OK
+HTTP/1.1 201 Created
 Content-Type: application/json
 
 {
@@ -2290,16 +2289,19 @@ in [@RFC6838].<a href="#section-14.2-1" class="pilcrow">¶</a></p>
           <p id="appendix-A-2.1.1">Paul Bastien<a href="#appendix-A-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-2.2">
-          <p id="appendix-A-2.2.1">Riccardo Iaconelli<a href="#appendix-A-2.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-2.2.1">Emanuele De Cupis<a href="#appendix-A-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-2.3">
-          <p id="appendix-A-2.3.1">Victor Näslund<a href="#appendix-A-2.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-2.3.1">Riccardo Iaconelli<a href="#appendix-A-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-2.4">
-          <p id="appendix-A-2.4.1">Giada Sciarretta<a href="#appendix-A-2.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-2.4.1">Victor Näslund<a href="#appendix-A-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-2.5">
-          <p id="appendix-A-2.5.1">Amir Sharif<a href="#appendix-A-2.5.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-2.5.1">Giada Sciarretta<a href="#appendix-A-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.6">
+          <p id="appendix-A-2.6.1">Amir Sharif<a href="#appendix-A-2.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
