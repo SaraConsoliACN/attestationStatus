@@ -1022,6 +1022,8 @@ Appendix A.  Acknowledgments
 
    *  Paul Bastien
 
+   *  Emanuele De Cupis
+
    *  Riccardo Iaconelli
 
    *  Victor Näslund
