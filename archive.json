@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-03T00:48:15.910262+00:00",
+  "timestamp": "2024-03-05T00:44:56.210633+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -348,15 +348,15 @@
       "id": "I_kwDOK4XJ0s6AyvFE",
       "title": "aud parameter in credential_pop",
       "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/23",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "fmarino-ipzs",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "`aud` parameter should be set to the endpoint at which the credential_pop is used. ",
       "createdAt": "2024-02-29T09:19:33Z",
-      "updatedAt": "2024-02-29T09:43:16Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-04T15:37:20Z",
+      "closedAt": "2024-03-04T15:37:20Z",
       "comments": [
         {
           "author": "peppelinux",
@@ -1975,24 +1975,26 @@
       "id": "PR_kwDOK4XJ0s5oRZfo",
       "title": "fix: aud normative value",
       "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/24",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "peppelinux",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes https://github.com/peppelinux/draft-demarco-oauth-status-attestations/issues/23",
       "createdAt": "2024-02-29T09:46:30Z",
-      "updatedAt": "2024-02-29T09:48:19Z",
+      "updatedAt": "2024-03-04T15:37:20Z",
       "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "baseRefName": "main",
       "baseRefOid": "d06f46d4bb51b6bbbea052915bcaf6a8b57354bd",
       "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
       "headRefName": "aud",
       "headRefOid": "3fb3294c9be1661a5af35dc61abcc1796d34b951",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-04T15:37:19Z",
+      "mergedAt": "2024-03-04T15:37:19Z",
+      "mergedBy": "OR13",
+      "mergeCommit": {
+        "oid": "913797c95163a7129305311922dc68d61881f915"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2006,6 +2008,94 @@
           "body": "",
           "createdAt": "2024-02-29T09:48:19Z",
           "updatedAt": "2024-02-29T09:48:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5yHxpz",
+          "commit": {
+            "abbreviatedOid": "3fb3294"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-04T15:36:27Z",
+          "updatedAt": "2024-03-04T15:36:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOK4XJ0s5okt5e",
+      "title": "normative language in status attestation response and fix response body",
+      "url": "https://github.com/peppelinux/draft-demarco-oauth-status-attestations/pull/25",
+      "state": "MERGED",
+      "author": "peppelinux",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "this PR\r\n\r\n- fixes the response description of the status attestation response, from OK to Created (201)\r\n- adds normative language about the status attestation response",
+      "createdAt": "2024-03-04T10:50:43Z",
+      "updatedAt": "2024-03-04T16:12:02Z",
+      "baseRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "baseRefName": "main",
+      "baseRefOid": "d06f46d4bb51b6bbbea052915bcaf6a8b57354bd",
+      "headRepository": "peppelinux/draft-demarco-oauth-status-attestations",
+      "headRefName": "201",
+      "headRefOid": "aa65f1951b648a75fea6b7f063b93885ab9d29de",
+      "closedAt": "2024-03-04T16:12:02Z",
+      "mergedAt": "2024-03-04T16:12:02Z",
+      "mergedBy": "peppelinux",
+      "mergeCommit": {
+        "oid": "c2c9784e048f5995149f532ebe550634dd9f309e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4XJ0s5yFVag",
+          "commit": {
+            "abbreviatedOid": "5ccd398"
+          },
+          "author": "peppelinux",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T10:51:14Z",
+          "updatedAt": "2024-03-04T10:51:14Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nIf the Digital Credential is valid, the Credential Issuer MUST return an HTTP status code of 201 (Created), with the content type set to `application/json`. The response MUST include a JSON object with a member named `status_attestation`, which contains the Status Attestation for the Wallet Instance, as illustrated in the following non-normative example:\r\n```",
+              "createdAt": "2024-03-04T10:51:14Z",
+              "updatedAt": "2024-03-04T10:51:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5yHxfV",
+          "commit": {
+            "abbreviatedOid": "aa65f19"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-04T15:36:09Z",
+          "updatedAt": "2024-03-04T15:36:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4XJ0s5yIEMX",
+          "commit": {
+            "abbreviatedOid": "aa65f19"
+          },
+          "author": "fmarino-ipzs",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-04T16:07:55Z",
+          "updatedAt": "2024-03-04T16:07:55Z",
           "comments": []
         }
       ]
