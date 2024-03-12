@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-10T00:49:28.531959+00:00",
+  "timestamp": "2024-03-12T00:44:33.133018+00:00",
   "repo": "peppelinux/draft-demarco-oauth-status-attestations",
   "labels": [
     {
@@ -292,11 +292,13 @@
       "state": "OPEN",
       "author": "fmarino-ipzs",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "peppelinux"
+      ],
       "labels": [],
       "body": "The credential_pop is a JWT. I would consider `typ` as OPTIONAL and value it with `jwt`.\r\nIf omitted by default it is assumed to be `jwt`.",
       "createdAt": "2024-02-24T00:16:16Z",
-      "updatedAt": "2024-02-28T14:22:31Z",
+      "updatedAt": "2024-03-11T07:59:50Z",
       "closedAt": null,
       "comments": [
         {
