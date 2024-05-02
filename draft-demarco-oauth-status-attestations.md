@@ -361,7 +361,7 @@ If the Digital Credential is valid, the Credential Issuer creates a new Status A
 {
     "iss": "https://issuer.example.org",
     "iat": 1504699136,
-    "exp": 1504700136,
+    "exp": 1698830439,
     "credential_hash": $CREDENTIAL-HASH,
     "credential_hash_alg": "sha-256",
     "cnf": {
