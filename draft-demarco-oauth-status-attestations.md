@@ -403,7 +403,7 @@ Content-Type: application/json
     "status_attestation": "eyJhbGciOiJFUzI1Ni ...",
 }
 ~~~
-#TODO STATUS_ATTESTATION DEFINITION
+*TODO STATUS_ATTESTATION DEFINITION*
 
 
 # Credential Issuers Supporting Status Attestations
