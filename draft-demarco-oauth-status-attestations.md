@@ -236,7 +236,7 @@ related to a specific Credential issued by the same Credential Issuer.
 +--------+----------+                         +----------+---------+
          |                                               |
          | HTTP POST /status                             |
-         |  credential_pop = [$CredentialPoPJWT]           |
+         |  credential_pop = [$CredentialPoPJWT]         |
          +----------------------------------------------->
          |                                               |
          |  Response with Status Attestation JWT         |
@@ -260,7 +260,7 @@ POST /status HTTP/1.1
 Host: issuer.example.org
 Content-Type: application/x-www-form-urlencoded
 
-credential_pop = [$CredentialPoPJWT] 
+credential_pop = [$CredentialPoPJWT]
 ~~~
 
 To validate that the Wallet Instance is entitled to request its Status Attestation,
